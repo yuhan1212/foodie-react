@@ -1,25 +1,47 @@
-import React from "react";
-const userListItem = ({ user }) => {
+import { ListItem, Flex, Box, Text, IconButton } from "@chakra-ui/react";
+import { BsPersonBadge } from "react-icons/bs";
+import { FaTrash, FaUserCog } from "react-icons/fa";
+
+const UserListItem = ({ user }) => {
     return (
-        <li className="list-group-item">
-        <div className="row">
+        <ListItem mt={3}>
+            <Flex alignItems="center">
+                <Box as="span" textAlign="center" mr={3} width={70} display="flex"
+                     flexDirection="column" mr={3} alignItems="center">
+                    {user.role === "MEMBER" && (
+                        <>
+                            <BsPersonBadge/>
+                            <Text fontSize="xs" mt={1}>
+                                MEMBER
+                            </Text>
+                        </>
+                    )}
+                    {user.role === "ADMIN" && (
+                        <>
+                            <FaUserCog/>
+                            <Text fontSize="xs" mt={1}>
+                                ADMIN
+                            </Text>
+                        </>
+                    )}
+                </Box>
+                <Box flex={1}>
+                    <Text fontWeight="bold">{user.userName}</Text>
+                    <Text fontSize="sm" color="gray.600">
+                        {user.email}
+                    </Text>
+                </Box>
+                <Box textAlign="center" my="auto">
+                    <IconButton
+                        variant="ghost"
+                        colorScheme="red"
+                        aria-label="Delete user"
+                        icon={<FaTrash />}
+                    />
+                </Box>
+            </Flex>
+        </ListItem>
+    );
+};
 
-            <div className="col-3 d-flex justify-content-center">
-                    {user.role === 'MEMBER' && <div><i className="d-flex justify-content-center bi bi-person-badge mb-0"></i><div>MEMBER</div></div>}
-                    {user.role === 'ADMIN' && <div><i className="d-flex justify-content-center bi bi-person-gear"></i><div>ADMIN</div></div>}
-            </div>
-
-            <div className="col-7">
-                <div className="fw-bold">{user.userName}</div>
-                <div>{user.email}</div>
-            </div>
-
-            <div className="col-2 d-flex justify-content-center my-auto">
-                <button className="btn btn-danger rounded-pill float-end">Delete</button>
-            </div>
-
-        </div>
-        </li>
-    )
-}
-export default userListItem;
+export default UserListItem;

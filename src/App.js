@@ -4,10 +4,12 @@ import {Routes, Route} from "react-router";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import NotFound from "./components/NotFound";
+import Profile from "./components/Profile";
 import {ChakraProvider} from "@chakra-ui/react";
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
 import userReducer from "./reducers/user-reducer";
+
 
 const store = configureStore({
     reducer: {
@@ -23,6 +25,8 @@ const App = () => {
             <BrowserRouter>
                 <div className="container">
                     <Routes>
+                        <Route path="/profile"
+                               element={<Profile />}/>
                         <Route path="/login"
                                element={<Login />}/>
                         <Route path="/register"
