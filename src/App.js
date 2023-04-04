@@ -5,7 +5,6 @@ import HomeScreen from "./components/HomeScreen";
 import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import NotFound from "./components/NotFound";
 import Profile from "./components/Profile";
 import {ChakraProvider} from "@chakra-ui/react";
 import {Provider} from "react-redux";
