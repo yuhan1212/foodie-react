@@ -1,5 +1,5 @@
 // public details
-import { Container, Heading, UnorderedList } from "@chakra-ui/react";
+import { Heading, UnorderedList } from "@chakra-ui/react";
 import SavedRecipeItem from "./saved-recipe-item";
 
 const saved_recipes = [
@@ -36,7 +36,7 @@ const saved_recipes = [
 
 const SavedRecipe = () => {
     return (
-        <Container>
+        <>
             <Heading as="h1" size="xl">
                 Saved Recipe
             </Heading>
@@ -49,7 +49,7 @@ const SavedRecipe = () => {
                 ))}
 
             </UnorderedList>
-        </Container>
+        </>
     );
 };
 
