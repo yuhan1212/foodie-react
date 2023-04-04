@@ -18,7 +18,7 @@ const Navbar = () => {
                     </div>
                     <div className="navbar-nav me-auto mb-2 mb-lg-0">
                         <NavLink to="/others" className="nav-link" data-activeclassname="active">
-                            Connect
+                            Others
                         </NavLink>
                     </div>
                     <div className="navbar-nav me-auto mb-2 mb-lg-0">
