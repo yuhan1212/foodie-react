@@ -5,7 +5,12 @@ const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-light">
             <nav className="navbar bg-body-tertiary">
-                <div className="container">
+
+                <div className="container-fluid">
+                    {/*logo*/}
+                    <a className="navbar-brand" href="#">
+                        <i className="bi bi-egg-fried"></i> Foodie</a>
+
                     <div className="navbar-nav me-auto mb-2 mb-lg-0">
                         <NavLink to="/home" className="nav-link" data-activeclassname="active">
                             Home
