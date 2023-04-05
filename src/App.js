@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
+import AboutUs from "./components/AboutUs";
+import Others from "./components/Others";
 import {ChakraProvider} from "@chakra-ui/react";
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
@@ -28,8 +30,10 @@ const App = () => {
                     <Routes>
                         <Route path="/*" element={<HomeScreen/>}/>
                         <Route path="/profile" element={<Profile/>}/>
-                        <Route path="/login" element={<Login />}/>
-                        <Route path="/register" element={<Register />}/>
+                        <Route path="/others" element={<Others/>}/>
+                        <Route path="/aboutus" element={<AboutUs/>}/>
+                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/register" element={<Register/>}/>
                     </Routes>
                 </div>
             </BrowserRouter>
