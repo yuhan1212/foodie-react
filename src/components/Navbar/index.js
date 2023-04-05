@@ -1,19 +1,28 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+
+
 const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
-
             <div className="container-fluid">
                <NavLink to="/home" className="nav-link" data-activeclassname="active">
                     <a className="navbar-brand" href="#"><i className="bi bi-egg-fried"></i> Foodie</a>
                </NavLink>
 
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+
                 <div className="collapse navbar-collapse" id="navbarText">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <NavLink to="/home" className="nav-link" data-activeclassname="active">
-                            Home
+                            <li className="nav-item">
+                                home
+                            </li>
                         </NavLink>
                         <NavLink to="/Profile" className="nav-link" data-activeclassname="active">
                             Profile
@@ -38,12 +47,7 @@ const Navbar = () => {
                     </span>
                 </div>
 
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
             </div>
-
         </nav>
     )
 }
