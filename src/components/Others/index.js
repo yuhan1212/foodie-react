@@ -1,10 +1,11 @@
 import React from 'react';
-
+import { Link } from "react-router-dom";
 const Others = () => {
     return(
-        <div>
-            you have to sign in first to join the foodies community
+        <div className='alert alert-light'>
+            Please log in first
         </div>
+
     )
 }
 export default Others;
