@@ -24,8 +24,8 @@ const HomeScreen = () => {
     }
 
     return (
-        <div className="position-relative">
-            <img src="../../../images/food.png" className="img-fluid w-100 h-100" alt="placeholder" />
+        <div className="container-fluid">
+            <img src="../../../images/recipe.jpg" className="img-fluid w-100 h-100" alt="placeholder" />
             <div className="position-absolute top-50 start-50 translate-middle">
                 <div className="form-inline my-2 my-lg-0">
                     <div className="row">
@@ -42,28 +42,29 @@ const HomeScreen = () => {
                             <button onClick={() => searchMealName(search)}
                                 className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </div>
-
-                        <ul className="list-group">
-                            {
-                                resultMeal && resultMeal.meals && resultMeal.meals.map((meal) => {
-                                    console.log(resultMeal)
-                                    return(
-                                        <li className="list-group-item">
-                                            <Link to={`/details/${meal.idMeal}`}>
-                                                <div>
-                                                    {meal.strMeal}
-                                                    <img className="float-right" src={meal.strMealThumb} width={50}/>
-                                                </div>
-                                            </Link>
-                                        </li>
-                                    )
-                                })
-                            }
-                        </ul>
-
                     </div>
                 </div>
+
+                <ul className="list-group position-absolute">
+                    {
+                        resultMeal && resultMeal.meals && resultMeal.meals.map((meal) => {
+                            console.log(resultMeal)
+                            return(
+                                <li className="list-group-item">
+                                    <Link to={`/details/${meal.idMeal}`}>
+                                        <div>
+                                            {meal.strMeal}
+                                            <img className="float-right" src={meal.strMealThumb} width={50}/>
+                                        </div>
+                                    </Link>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
             </div>
+
+
         </div>
     )
 }
