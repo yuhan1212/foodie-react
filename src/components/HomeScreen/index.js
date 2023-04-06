@@ -29,13 +29,14 @@ const HomeScreen = () => {
             <div className="position-absolute top-50 start-50 translate-middle">
                 <div className="form-inline my-2 my-lg-0">
                     <div className="row">
+
                         <div className="col">
                             <input value={search}
                                    onChange={(e) => {
                                        setSearch(e.target.value)}
                                    }
                                    className="form-control mr-sm-2" style={{ width: '300px' }}
-                                   type="search" placeholder="Search for a receipy"/>
+                                   type="search" placeholder="Search for a recipe"/>
                         </div>
 
                         <div className="col-auto">
