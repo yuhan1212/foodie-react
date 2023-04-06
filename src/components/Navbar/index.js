@@ -2,13 +2,12 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 
-
 const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
                <NavLink to="/home" className="nav-link" data-activeclassname="active">
-                    <a className="navbar-brand" href="#"><i className="bi bi-egg-fried"></i> Foodie</a>
+                    <span className="navbar-brand" href="#"><i className="bi bi-egg-fried"></i> Foodie</span>
                </NavLink>
 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
