@@ -28,14 +28,24 @@ const HomeScreen = () => {
             <img src="../../../images/recipe.jpg" className="img-fluid w-100 h-100" alt="placeholder" />
 
             <div className="position-absolute top-50 start-50 translate-middle">
+
                 <div className="form-inline my-2 my-lg-0">
+                    <h1>What do you want to eat?</h1>
                     <div className="row">
 
                         <div className="col">
                             <input value={search}
                                    onChange={(e) => {
-                                       setSearch(e.target.value)}
-                                   }
+                                       setSearch(e.target.value)
+                                       if (e.target.value === '') {
+                                       setResultMeal({});
+                                    }
+                                   }}
+                                   onKeyPress={(e) => {
+                                       if (e.key === 'Enter') {
+                                           searchMealName(search);
+                                       }
+                                   }}
                                    className="form-control mr-sm-2" style={{ width: '300px' }}
                                    type="search" placeholder="Search for a recipe"/>
                         </div>
