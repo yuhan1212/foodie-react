@@ -26,6 +26,7 @@ const HomeScreen = () => {
     return (
         <div className="container-fluid">
             <img src="../../../images/recipe.jpg" className="img-fluid w-100 h-100" alt="placeholder" />
+
             <div className="position-absolute top-50 start-50 translate-middle">
                 <div className="form-inline my-2 my-lg-0">
                     <div className="row">
@@ -64,7 +65,6 @@ const HomeScreen = () => {
                     }
                 </ul>
             </div>
-
 
         </div>
     )
