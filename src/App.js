@@ -1,6 +1,7 @@
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router";
+import SearchScreen from "./components/SearchScreen";
 import HomeScreen from "./components/HomeScreen";
 import Navbar from "./components/Navbar";
 import Login from "./components/Login";
@@ -12,7 +13,6 @@ import {ChakraProvider} from "@chakra-ui/react";
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
 import userReducer from "./reducers/user-reducer";
-
 
 const store = configureStore({
     reducer: {
@@ -29,6 +29,7 @@ const App = () => {
                     <Navbar/>
                     <Routes>
                         <Route path="/*" element={<HomeScreen/>}/>
+                        <Route path="/search" element={<SearchScreen/>}/>
                         <Route path="/profile" element={<Profile/>}/>
                         <Route path="/others" element={<Others/>}/>
                         <Route path="/aboutus" element={<AboutUs/>}/>

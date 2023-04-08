@@ -1,0 +1,12 @@
+.footer_social a:hover i {
+    color: darkgoldenrod;
+}
+
+.footer_contact a:hover i {
+    color: darkgoldenrod;
+}
+
+#footer-logo {
+    font-family: "Brush Script MT", cursive;
+    font-size: 30px;
+}

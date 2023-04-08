@@ -1,81 +1,101 @@
 import React from 'react';
-import {useEffect, useState} from "react";
-import {Link, useParams} from "react-router-dom";
-import searchService from "../../services/search-service";
+import "./index.css";
+import {Link} from "react-router-dom";
 
 const HomeScreen = () => {
-    const {mealNames} = useParams();
-    const [search, setSearch] = useState('');
-    const [resultMeal, setResultMeal] = useState({meals: []});
-
-    useEffect(() => {
-        if(mealNames !== "undefined" && typeof mealNames !== "undefined")
-            searchService.findMealByName(mealNames)
-                .then((resultMeal) => {
-                    setResultMeal(resultMeal)
-                })
-    },[])
-
-    const searchMealName = (mealName) => {
-        searchService.findMealByName(mealName)
-            .then((resultMeal) => {
-                setResultMeal(resultMeal)
-            })
-    }
-
     return (
-        <div className="container-fluid">
-            <img src="../../../images/recipe.jpg" className="img-fluid w-100 h-100" alt="placeholder" />
+        <div>
+            <div className="container-fluid">
+                <div className="row ">
 
-            <div className="position-absolute top-50 start-50 translate-middle">
-
-                <div className="form-inline my-2 my-lg-0">
-                    <h1>What do you want to eat?</h1>
-                    <div className="row">
-
-                        <div className="col">
-                            <input value={search}
-                                   onChange={(e) => {
-                                       setSearch(e.target.value)
-                                       if (e.target.value === '') {
-                                       setResultMeal({});
-                                    }
-                                   }}
-                                   onKeyPress={(e) => {
-                                       if (e.key === 'Enter') {
-                                           searchMealName(search);
-                                       }
-                                   }}
-                                   className="form-control mr-sm-2" style={{ width: '300px' }}
-                                   type="search" placeholder="Search for a recipe"/>
+                    <div className='col-5 d-none d-md-block'>
+                        <h1 className="home-text-1 homeScreen-title">WANT TO EAT HEALTHY?</h1>
+                        <h3 className="home-text-2 homeScreen-subTitle">Join our community to cook fresh meal at home!</h3>
+                        <br></br>
+                        <div className="d-flex justify-content-center">
+                            <Link to="/search">
+                            <button type="button" className="rounded-pill btn btn-warning btn-lg"><i
+                                className="bi bi-search"></i> Search for a Meal!</button>
+                            </Link>
                         </div>
+                    </div>
 
-                        <div className="col-auto">
-                            <button onClick={() => searchMealName(search)}
-                                className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <div className="col-5 col-xs-10 first-img-border">
+                        <div>
+                            <img src="../../../images/egg.jpg"
+                                 className="img-fluid" alt=""/>
                         </div>
                     </div>
                 </div>
 
-                <ul className="list-group position-absolute">
-                    {
-                        resultMeal && resultMeal.meals && resultMeal.meals.map((meal) => {
-                            console.log(resultMeal)
-                            return(
-                                <li className="list-group-item">
-                                    <Link to={`/details/${meal.idMeal}`}>
-                                        <div>
-                                            {meal.strMeal}
-                                            <img className="float-right" src={meal.strMealThumb} width={50}/>
-                                        </div>
-                                    </Link>
-                                </li>
-                            )
-                        })
-                    }
-                </ul>
-            </div>
+                <div className="row img-ys2">
+                    <div className="col-2 col-xs-2">
 
+                    </div>
+                    <div className="col-5 col-xs-10">
+                        <div>
+                            <img src="../../../images/lamb.jpg"
+                                 className="second-img img-fluid" alt=""/>
+                        </div>
+                    </div>
+                </div>
+
+                <br></br>
+                <footer className="footer_section">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-5 footer-col">
+                                <div className="footer_contact">
+                                    <h4>
+                                        Contact Us
+                                    </h4>
+                                    <div className="contact_link_box">
+                                        <a href="https://github.com/yuhan1212/foodie-react">
+                                            <i className="bi bi-github"> </i>
+                                            <span>
+                                              GITHUB LINK
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-5 footer-col">
+                                <div className="footer_detail">
+                                    <a id="footer-logo" href="" className="footer-logo">
+                                        Foodie
+                                    </a>
+                                    <p>
+                                        Everything you need to create delicious meals at home is here!
+                                    </p>
+                                    <div className="footer_social">
+                                        <a href="">
+                                            <i className="bi bi-facebook me-2"></i>
+                                        </a>
+                                        <a href="">
+                                            <i className="bi bi-twitter me-2" ></i>
+                                        </a>
+                                        <a href="">
+                                            <i className="bi bi-linkedin me-2"></i>
+                                        </a>
+                                        <a href="">
+                                            <i className="bi bi-instagram me-2"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <br></br>
+                        <div className="container text-center">
+                            <p>
+                                <span><i className="bi bi-c-circle">2023</i> All Rights Reserved By Web 5610</span>
+                            </p>
+                        </div>
+                    </div>
+                </footer>
+
+            </div>
         </div>
     )
 }
