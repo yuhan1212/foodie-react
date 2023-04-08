@@ -11,7 +11,7 @@ const UserList = () => {
     return (
         <>
             <Heading as="h1" size="xl">Foodie Users</Heading>
-            <UnorderedList mt={8} listStyleType="none">
+            <UnorderedList mt={8}  pl={0} listStyleType="none">
 
                 {users.map(user => <UserListItem
                     key={user._id}
