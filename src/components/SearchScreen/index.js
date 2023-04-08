@@ -45,13 +45,13 @@ const SearchScreen = () => {
                                                searchMealName(search);
                                            }
                                        }}
-                                       className="form-control mr-sm-2" style={{ width: '300px' }}
+                                       className="form-control mr-sm-2 rounded-pill" style={{ width: '500px' }}
                                        type="search" placeholder="Search for a recipe"/>
                             </div>
                         </div>
                         <div className="col-auto">
                             <button onClick={() => searchMealName(search)}
-                                className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                className="btn btn-warning my-2 my-sm-0 btn-lg rounded-pill" type="submit">Search</button>
                         </div>
                     </div>
                 </div>

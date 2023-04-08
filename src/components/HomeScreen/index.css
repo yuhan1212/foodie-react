@@ -1,12 +1,23 @@
-.footer_social a:hover i {
-    color: darkgoldenrod;
-}
-
-.footer_contact a:hover i {
-    color: darkgoldenrod;
-}
 
 #footer-logo {
     font-family: "Brush Script MT", cursive;
-    font-size: 30px;
+}
+
+.homeScreen-title {
+    margin-top: 30%;
+    text-align: center;
+    color: #ff9900;
+}
+
+.homeScreen-subTitle {
+    text-align: center;
+    font-size: 20px;
+}
+
+.home-text-1 {
+    color: #fff; /* Set the text color */
+    text-shadow: 2px 2px 0 #000, 3px 3px 0 #000, 4px 4px 0 green; /* Create multiple shadows to achieve the 3D effect */
+    font-size: 48px; /* Set the font size */
+    font-weight: bold; /* Set the font weight */
+    font-family: 'Roboto', sans-serif; /* Set the font family */
 }

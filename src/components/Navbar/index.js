@@ -1,14 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+import "./index.css";
 
 const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
-               <NavLink to="/home" className="nav-link" data-activeclassname="active">
+                <NavLink to="/home" className="nav-link" activeClassName="active" style={{ fontSize: '24px', padding: '10px' }}>
                     <span className="navbar-brand" href="#"><i className="bi bi-egg-fried"></i> Foodie</span>
-               </NavLink>
+                </NavLink>
 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false"
