@@ -37,7 +37,7 @@ const Profile = () => {
                         </div>
                         <div className="col m-3">
                             <UserList />
-                            <SavedRecipe />
+                            <SavedRecipe user={{'_id': '643214d9310aaac5adc27d78'}}/>
                         </div>
                     </div>
                 </div>
