@@ -10,7 +10,7 @@ const initialState = {
     address: {},
     avatar: "",
     about: "",
-    roles: [],
+    role: "",
     loading: false,
 };
 

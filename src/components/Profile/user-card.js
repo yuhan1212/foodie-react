@@ -4,13 +4,12 @@ import UserBio from "./user-bio";
 import UserInfo from "./user-info";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const UserCard = () => {
+const UserCard = ({user}) => {
 
-    const user = {
-        "_id": "123", "name": "CS5610 Foodie",
-        "email": "foodie-admin@gmail.com", "password": "foodieadminpassword",
-        "bio": "This is where users put their self-introduction."
-    };
+    // const saveProfile = (user) => {
+    //     profileService.updateProfile(user)
+    //         .then(res => console.log(res))
+    // }
 
     const [isEditing, setIsEditing] = useState(false);
 
@@ -31,9 +30,9 @@ const UserCard = () => {
                     </button>
                 )}
                 <br/>
-                {UserBio(user, isEditing)}
+                {UserBio({user, isEditing})}
             </div>
-            {UserInfo(user, isEditing)}
+            {UserInfo({user, isEditing})}
         </div>
     );
 };

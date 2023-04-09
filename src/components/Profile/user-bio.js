@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserBio = (user, isEditing) => {
+const UserBio = ({user, isEditing}) => {
 
     return (
         <div>
