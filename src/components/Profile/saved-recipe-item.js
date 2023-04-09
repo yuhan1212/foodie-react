@@ -3,13 +3,12 @@ import { FaHeart } from "react-icons/fa";
 import {useDispatch} from "react-redux";
 import {removeFavoriteThunk} from "../../services/favorite-thunks";
 
-const SavedRecipeItem = ({ favorite }) => {
+const SavedRecipeItem = ({favorite}) => {
     const dispatch = useDispatch();
     const removeFavoriteHandler = (favorite) => {
-        dispatch(removeFavoriteThunk(favorite.recipeId, favorite.userId));
+        console.log('removeFavoriteHandler', favorite)
+        dispatch(removeFavoriteThunk(favorite))
     }
-    console.log("in saved recipe item");
-    console.log(favorite);
     return (
         <ListItem mt={3}>
             <Flex alignItems="center">
@@ -23,6 +22,7 @@ const SavedRecipeItem = ({ favorite }) => {
                 <Text fontWeight="bold">{favorite.recipeName}</Text>
                 <Flex flex={1} justifyContent="flex-end">
                     <IconButton
+                        onClick={() => removeFavoriteHandler(favorite)}
                         variant="ghost"
                         colorScheme="red"
                         aria-label="Add to favorites"

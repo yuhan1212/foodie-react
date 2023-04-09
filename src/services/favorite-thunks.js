@@ -11,9 +11,8 @@ export const isFavoriteThunk = createAsyncThunk(
 
 export const findFavoritesByUserIdThunk = createAsyncThunk(
     FAVORITE, async (userId) => {
-        await service.findFavoritesByUserId(userId)
-
-        console.log("in favorite thunk", await service.findFavoritesByUserId(userId))
+        const favorites = await service.findFavoritesByUserId(userId)
+        return favorites
     }
 )
 
@@ -26,15 +25,16 @@ export const addFavoriteThunk = createAsyncThunk(
 )
 
 export const removeFavoriteThunk = createAsyncThunk(
-    FAVORITE, async (recipeId, userId) => {
-        await service.removeFavorite(recipeId, userId)
-        return recipeId
+    FAVORITE, async (favorite) => {
+        console.log('removeFavoriteThunk', favorite)
+        await service.removeFavorite(favorite)
     }
 )
 
 export const findAllFavoritesThunk = createAsyncThunk(
     FAVORITE, async () => {
-        await service.findAllFavorites()
+        const favorites = await service.findAllFavorites()
+        return favorites
     }
 
 )

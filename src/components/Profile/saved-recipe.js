@@ -3,20 +3,18 @@ import { Heading, UnorderedList } from "@chakra-ui/react";
 import SavedRecipeItem from "./saved-recipe-item";
 import {useDispatch, useSelector} from "react-redux";
 import {findFavoritesByUserIdThunk} from "../../services/favorite-thunks";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 
 
 const SavedRecipe = ({user}) => {
-    const {favorites, loading} = useSelector(
+    let {favorites, loading} = useSelector(
         state => state.favoritesData)
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findFavoritesByUserIdThunk(user._id))
-        console.log("in saved recipe useEffect")
-        console.log(favorites)
     }, [])
-    console.log("in saved recipe")
-    console.log(favorites)
+
     return (
         <>
             <Heading as="h1" size="xl">
@@ -33,7 +31,7 @@ const SavedRecipe = ({user}) => {
                     {favorites && favorites.map((favorite) => (
                         <SavedRecipeItem
                             key={favorite._id}
-                            saved_recipe={favorite}
+                            favorite={favorite}
                         />
                     ))}
 
