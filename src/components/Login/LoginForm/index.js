@@ -1,12 +1,12 @@
 import {
-    Alert,
     Button,
     FormControl,
     FormHelperText,
     FormLabel,
     Input,
     InputGroup,
-    InputRightElement, VStack
+    InputRightElement,
+    VStack
 } from "@chakra-ui/react";
 import {useState} from "react";
 
@@ -52,7 +52,6 @@ const LoginForm = ({handleSubmit, submitting, error}) => {
                     width={'full'}>
                     Submit
                 </Button>
-                {error && <Alert status='error'>{error}</Alert>}
             </VStack>
         </form>
     )

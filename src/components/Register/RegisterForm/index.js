@@ -54,6 +54,13 @@ const RegisterForm = ({
                     <FormHelperText>We'll never share your email.</FormHelperText>
                 </FormControl>
                 <FormControl isRequired={true}>
+                    <FormLabel>Username</FormLabel>
+                    <Input
+                        type='text'
+                        name={'username'}
+                    />
+                </FormControl>
+                <FormControl isRequired={true}>
                     <FormLabel>Password</FormLabel>
                     <InputGroup size='md'>
                         <Input
@@ -88,6 +95,40 @@ const RegisterForm = ({
                             </Button>
                         </InputRightElement>
                     </InputGroup>
+                </FormControl>
+                <FormControl>
+                    <FormLabel>Phone</FormLabel>
+                    <Input
+                        type='text'
+                        name={'phone'}
+                    />
+                </FormControl>
+                <FormControl isRequired={true}>
+                    <FormLabel>Address</FormLabel>
+                    <VStack>
+                        <Input
+                            type='text'
+                            name={'street'}
+                            placeholder={'Street'}
+                        />
+                        <HStack>
+                            <Input
+                                type='text'
+                                name={'city'}
+                                placeholder={'City'}
+                            />
+                            <Input
+                                type='text'
+                                name={'state'}
+                                placeholder={'State'}
+                            />
+                            <Input
+                                type='text'
+                                name={'zip'}
+                                placeholder={'Zipcode'}
+                            />
+                        </HStack>
+                    </VStack>
                 </FormControl>
                 <FormControl isRequired={true}>
                     <CUIAutoComplete

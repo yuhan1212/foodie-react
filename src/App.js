@@ -10,7 +10,7 @@ import Profile from "./components/Profile";
 import AboutUs from "./components/AboutUs";
 import Others from "./components/Others";
 import {ChakraProvider} from "@chakra-ui/react";
-import {Provider} from "react-redux";
+import {Provider, useSelector} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
 import userReducer from "./reducers/user-reducer";
 

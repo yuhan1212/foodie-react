@@ -1,22 +1,32 @@
-import {Container} from "@chakra-ui/react";
+import {Container, useToast} from "@chakra-ui/react";
 import {useDispatch, useSelector} from "react-redux";
 import LoginForm from "./LoginForm";
-import {userLogin} from "../../services/user-service";
-import {login, logout} from "../../reducers/user-reducer";
 import LoggedIn from "../StatusCards/LoggedIn";
-import {useNavigate} from "react-router";
+import {loginThunk} from "../../services/user-thunks";
+import {useEffect} from "react";
+import {statusReset} from "../../reducers/user-reducer";
 
 const Login = () => {
-
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const toast = useToast();
+
+    useEffect(() => {
+        if (user?.status === "login rejected") {
+            toast({
+                title: 'Login rejected!',
+                description: 'Invalid email or password',
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+            });
+            dispatch(statusReset());
+        }
+    }, [user]);
 
     const handleLogin = async (email, password) => {
         try {
-            const userData = await userLogin({email, password});
-            dispatch(login(userData));
-            navigate('/');
+            dispatch(loginThunk({email, password}));
         } catch (e) {
             console.log(e);
         }
@@ -37,8 +47,7 @@ const Login = () => {
             {user.email === "" ? (
                 <LoginForm
                     handleSubmit={handleSubmit}
-                    error={null}
-                    submitting={false}
+                    submitting={user.loading || false}
                 />
             ): (
                 <LoggedIn />
