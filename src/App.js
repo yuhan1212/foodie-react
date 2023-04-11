@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
+import DetailsScreen from "./components/Details/detail-screen";
 import AboutUs from "./components/AboutUs";
 import Others from "./components/Others";
 import {ChakraProvider} from "@chakra-ui/react";
@@ -37,6 +38,7 @@ const App = () => {
                         <Route path="/profile" element={<Profile/>}/>
                         <Route path="/others" element={<Others/>}/>
                         <Route path="/aboutus" element={<AboutUs/>}/>
+                        <Route path="/details/:mealId" element={<DetailsScreen/>}/>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
                     </Routes>
