@@ -1,23 +1,22 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import * as service from "./favorite-service";
 
-const FAVORITE = 'favorite'
 export const isFavoriteThunk = createAsyncThunk(
-    FAVORITE, async (recipeId, userId) => {
+    'favorite/isFavorite', async (recipeId, userId) => {
         const isFavorite = await service.isFavorite(recipeId, userId)
         return isFavorite
     }
 )
 
 export const findFavoritesByUserIdThunk = createAsyncThunk(
-    FAVORITE, async (userId) => {
+    'favorite/findFavoritesByUserId', async (userId) => {
         const favorites = await service.findFavoritesByUserId(userId)
         return favorites
     }
 )
 
 export const addFavoriteThunk = createAsyncThunk(
-    FAVORITE, async ({recipeId, userId, username, recipeName, recipeImg}) => {
+    'favorite/addFavorite', async ({recipeId, userId, username, recipeName, recipeImg}) => {
         const new_favorite = await service.addFavorite(recipeId, userId, username, recipeName, recipeImg)
         return new_favorite
     }
@@ -25,16 +24,15 @@ export const addFavoriteThunk = createAsyncThunk(
 )
 
 export const removeFavoriteThunk = createAsyncThunk(
-    FAVORITE, async (favorite) => {
+    'favorite/removeFavorite', async (favorite) => {
         await service.removeFavorite(favorite)
         return favorite
     }
 )
 
 export const findAllFavoritesThunk = createAsyncThunk(
-    FAVORITE, async () => {
-        const favorites = await service.findAllFavorites()
-        return favorites
+    'favorite/findAllFavorites', async () => {
+        return await service.findAllFavorites();
     }
 
 )

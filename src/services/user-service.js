@@ -15,8 +15,8 @@ export const userRegister = async (user) => {
 }
 
 export const removeUser = async (user) => {
-    const response = await axios.delete(USERS_API, { data: user});
-    return response.data;
+    await axios.delete(USERS_API, { data: user});
+    return user;
 }
 
 export const findAllUsers = async () => {

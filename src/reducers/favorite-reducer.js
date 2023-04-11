@@ -96,7 +96,7 @@ const favoritesSlice = createSlice({
                 console.log('removeFavoriteThunk in reducer', payload);
                 state.loading = false;
                 state.favorites = state.favorites
-                    .filter(f => (f.userId !== payload.userId || f.recipeId !== payload.recipeId))
+                    .filter(f => f._id !== payload._id)
                 console.log('removeFavoriteThunk fulfilled')
 
             },
