@@ -25,13 +25,12 @@ const SearchScreen = () => {
 
     return (
         <div className="container-fluid">
-            <img className="position-absolute" src="../../../images/recipe.jpg" className="img-fluid w-100 h-100" alt="placeholder" />
-
-            <div className="position-absolute top-50 start-50 translate-middle">
-
-                <div className="form-inline my-2 my-lg-0">
+            <img className="searchPage position-relative" src="../../../images/recipe.jpg" className="img-fluid w-100 h-100" alt="placeholder" />
+            <div className="position-absolute top-50 start-50 translate-middle-x">
+                <div className="d-flex justify-content-center form-inline my-2 my-lg-0">
                     <div className="row">
-                        <div className="col">
+                        <div className="col-sm-2 col-md-2"></div>
+                        <div className="col-sm-5 col-md-6 col-lg-7 col-xl-8">
                             <div className="input-group input-group-lg">
                                 <input value={search}
                                        onChange={(e) => {
@@ -49,7 +48,7 @@ const SearchScreen = () => {
                                        type="search" placeholder="Search for a recipe"/>
                             </div>
                         </div>
-                        <div className="col-auto">
+                        <div className="col-sm-1 col-md-2">
                             <button onClick={() => searchMealName(search)}
                                 className="btn btn-warning my-2 my-sm-0 btn-lg rounded-pill" type="submit">Search</button>
                         </div>
