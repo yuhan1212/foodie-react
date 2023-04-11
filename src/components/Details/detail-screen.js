@@ -51,17 +51,19 @@ const DetailsScreen = () => {
                         {mealName}
 
                     </h2>
-                    <div className=" container ">
+                    <div className="container p-0">
                         <img src={mealImg}
                              width={600}/>
                     </div>
                     <br/>
-                    <h3 className="list-group-item">Ingredients:</h3>
-                    <ul className="list-group-item">
-                        <li className="list-group-item" id="ingredientList"></li>
-                    </ul>
+                    <h2 className="list-group-item">Ingredients </h2>
+                    <div className="container" style={{paddingLeft: '20px'}}>
+                        <ul className="list-group-item">
+                            <li className="list-group-item" id="ingredientList"></li>
+                        </ul>
+                    </div>
 
-                    <h3> Instruction </h3>
+                    <h2> Instruction </h2>
                     <p>
                         {mealInstruction}
                     </p>
