@@ -19,16 +19,11 @@ export const addFavorite = async (recipeId, userId, username, recipeName, recipe
 }
 
 export const removeFavorite = async (favorite) => {
-
     const response = await axios.delete(FAVORITE_API, { data: favorite});
-    console.log("in favorite service")
-    console.log(response.data)
-    console.log('service remove')
-    console.log(response.data)
     return response.data;
 }
 
 export const findAllFavorites = async () => {
-    const response = await axios.delete(FAVORITE_API);
+    const response = await axios.get(FAVORITE_API);
     return response.data;
 }

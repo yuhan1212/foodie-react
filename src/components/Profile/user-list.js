@@ -1,19 +1,32 @@
 // only admin can see this component
-import React from "react";
+import React, {useEffect} from "react";
 import UserListItem from "./user-list-item";
 import {Heading, UnorderedList} from "@chakra-ui/react";
+import {useDispatch, useSelector} from "react-redux";
+import {findAllUsersThunk} from "../../services/all-user-thunks";
 
-const users = [{_id: 1, userName: 'Ann', password: '123', email: 'ann@gmail.com', role: 'ADMIN'},
-    {_id: 2, userName: 'Bee', password: '123', email: 'bee@gmail.com', role: 'MEMBER'},
-    {_id: 3, userName: 'Coo', password: '123', email: 'coo@gmail.com', role: 'MEMBER'}]
 
 const UserList = () => {
+    let {users, loading} = useSelector(
+        state => state.usersData)
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(findAllUsersThunk())
+    }, [])
     return (
         <>
             <Heading as="h1" size="xl">Foodie Users</Heading>
             <UnorderedList mt={8}  pl={0} listStyleType="none">
 
-                {users.map(user => <UserListItem
+                {
+                    loading &&
+                    <li className="list-group-item">
+                        Loading...
+                    </li>
+                }
+
+                {users && users.map(user => <UserListItem
                     key={user._id}
                     user={user}/>)}
             </UnorderedList>

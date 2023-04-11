@@ -3,7 +3,7 @@ import { Heading, UnorderedList } from "@chakra-ui/react";
 import SavedRecipeItem from "./saved-recipe-item";
 import {useDispatch, useSelector} from "react-redux";
 import {findFavoritesByUserIdThunk} from "../../services/favorite-thunks";
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 
 
 const SavedRecipe = ({user}) => {

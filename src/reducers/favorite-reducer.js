@@ -11,26 +11,22 @@ const favoritesSlice = createSlice({
     initialState: initialState,
     reducers: {},
     extraReducers: {
-        [isFavoriteThunk.pending]:
-            (state) => {
-            state.loading = true;
-            state.status = "isFavorite loading";
-            },
-        [isFavoriteThunk.fulfilled]:
-            (state, action) => {
+        [isFavoriteThunk.pending]: (state) => {
+                state.loading = true;
+                state.status = "isFavorite loading";
+        },
+        [isFavoriteThunk.fulfilled]: (state, action) => {
                 return {
                     ...action.payload,
                     loading: false,
                     status: "isFavorite fulfilled",
                 };
-            },
-        [isFavoriteThunk.rejected]:
-            (state, action) => {
+        },
+        [isFavoriteThunk.rejected]: (state, action) => {
                 state.loading = false;
                 state.status = "isFavorite rejected";
                 state.error = action.error;
-            },
-
+        },
 
 
         [addFavoriteThunk.pending]:
@@ -40,8 +36,8 @@ const favoritesSlice = createSlice({
             },
         [addFavoriteThunk.fulfilled]:
             (state, { payload }) => {
-                state.loading = false
-                state.favorites.push(payload)
+                state.loading = false;
+                state.favorites.push(payload);
 
             },
         [addFavoriteThunk.rejected]:
@@ -50,35 +46,13 @@ const favoritesSlice = createSlice({
                 state.status = "addFavorite rejected";
             },
 
-        [removeFavoriteThunk.pending]:
-            (state, { payload }) => {
-                console.log('removeFavoriteThunk pending')
-                state.loading = true;
-                state.status = "removeFavorite loading";
-            },
-        [removeFavoriteThunk.fulfilled]:
-            (state, { payload }) => {
-                state.loading = false
-                state.favorites = state.favorites
-                    .filter(f => (f.userId !== payload.userId || f.recipeId !== payload.recipeId))
-                console.log('removeFavoriteThunk fulfilled')
-
-            },
-        [removeFavoriteThunk.rejected]:
-            (state) => {
-                state.loading = false;
-                state.status = "removeFavorite rejected";
-            },
-
         [findAllFavoritesThunk.pending]:
             (state) => {
-                console.log('pending')
                 state.loading = true;
                 state.status = "findAllFavorites loading";
             },
         [findAllFavoritesThunk.fulfilled]:
             (state, action) => {
-                console.log('findAllFavoritesThunk fulfilled')
                 return {
                     ...action.payload,
                     loading: false,
@@ -88,21 +62,20 @@ const favoritesSlice = createSlice({
         },
         [findAllFavoritesThunk.rejected]:
             (state) => {
-                console.log('reject')
                 state.loading = false;
                 state.status = "findAllFavorites rejected";
             },
 
         [findFavoritesByUserIdThunk.pending]:
             (state) => {
-                state.loading = true
-                state.favorites = []
+                state.loading = true;
+                state.favorites = [];
                 state.status = "findFavoritesByUserId loading";
             },
         [findFavoritesByUserIdThunk.fulfilled]:
             (state, { payload }) => {
-                state.loading = false
-                state.favorites = payload
+                state.loading = false;
+                state.favorites = payload;
 
             },
         [findFavoritesByUserIdThunk.rejected]:
@@ -110,6 +83,28 @@ const favoritesSlice = createSlice({
                 state.loading = false;
                 state.error = action.error;
                 state.status = "findFavoritesByUserId rejected";
+            },
+
+        [removeFavoriteThunk.pending]:
+            (state, { payload }) => {
+                console.log('removeFavoriteThunk pending');
+                state.loading = true;
+                state.status = "removeFavorite loading";
+            },
+        [removeFavoriteThunk.fulfilled]:
+            (state, { payload }) => {
+                console.log('removeFavoriteThunk in reducer', payload);
+                state.loading = false;
+                state.favorites = state.favorites
+                    .filter(f => (f.userId !== payload.userId || f.recipeId !== payload.recipeId))
+                console.log('removeFavoriteThunk fulfilled')
+
+            },
+        [removeFavoriteThunk.rejected]:
+            (state) => {
+                console.log('reject');
+                state.loading = false;
+                state.status = "removeFavorite rejected";
             },
 
     },

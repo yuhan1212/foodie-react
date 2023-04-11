@@ -26,8 +26,8 @@ export const addFavoriteThunk = createAsyncThunk(
 
 export const removeFavoriteThunk = createAsyncThunk(
     FAVORITE, async (favorite) => {
-        console.log('removeFavoriteThunk', favorite)
         await service.removeFavorite(favorite)
+        return favorite
     }
 )
 

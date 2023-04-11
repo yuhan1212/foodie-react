@@ -10,15 +10,17 @@ import Profile from "./components/Profile";
 import AboutUs from "./components/AboutUs";
 import Others from "./components/Others";
 import {ChakraProvider} from "@chakra-ui/react";
-import {Provider, useSelector} from "react-redux";
+import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
 import userReducer from "./reducers/user-reducer";
 import favoriteReducer from "./reducers/favorite-reducer";
+import usersReducer from "./reducers/all-user-reducer";
 
 const store = configureStore({
     reducer: {
         user: userReducer,
         favoritesData: favoriteReducer,
+        usersData: usersReducer,
     }
 });
 
