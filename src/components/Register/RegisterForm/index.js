@@ -27,7 +27,13 @@ const RegisterForm = ({
     }));
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{
+            backgroundSize: "cover",
+            padding: "1rem",
+            borderRadius: "0.5rem",
+            boxShadow: "0 0.5rem 1rem rgba(0,0,0,0.1)",
+            display: "flex"
+        }}>
             <VStack spacing={5}>
                 <FormControl isRequired={true}>
                     {/*first name and last name */}
