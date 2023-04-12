@@ -21,3 +21,11 @@
     font-weight: bold; /* Set the font weight */
     font-family: 'Roboto', sans-serif; /* Set the font family */
 }
+
+.footer_detail a:hover {
+    color: goldenrod;
+}
+
+.contact_link_box a:hover {
+    color: goldenrod;
+}
