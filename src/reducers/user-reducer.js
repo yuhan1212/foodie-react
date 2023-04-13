@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {loginThunk, registerThunk, updateUserThunk} from "../services/user-thunks";
+import {loginThunk, registerThunk} from "../services/user-thunks";
 
 const initialState = {
     email: "",

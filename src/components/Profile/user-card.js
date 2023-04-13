@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { findUserByIdThunk } from '../../services/user-thunks';
+import React, { useState } from 'react';
+import { useDispatch } from "react-redux";
 import { updateProfile } from '../../reducers/user-reducer';
 import profilePic from './profile-image.jpeg';
 import UserBio from "./user-bio";
@@ -9,9 +8,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const UserCard = ({user}) => {
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(findUserByIdThunk(user._id))
-    }, []);
     const [isEditing, setIsEditing] = useState(false);
     const [profile, setProfile] = useState({
         email: user.email,
@@ -27,21 +23,23 @@ const UserCard = ({user}) => {
         dispatch(updateProfile(profile));
         setIsEditing(false);
     };
-    console.log(profile);
 
     return (
         <div className="card mx-5">
             <img className="card-img-top" src={profilePic} alt="Profile"/>
             <div className="card-body">
                 {!isEditing && (
-                    <button onClick={() => setIsEditing(true)}
-                            className="float-end rounded-pill btn btn-light">
+                    <button className="float-end rounded-pill btn btn-light"
+                            onClick={() => setIsEditing(true)}>
                         Edit
                     </button>
                 )}
                 {isEditing && (
-                    <button onClick={() => saveProfile}
-                            className="float-end rounded-pill btn btn-light">
+                    <button className="float-end rounded-pill btn btn-light"
+                            onClick={(e) => {
+                                e.preventDefault()
+                                saveProfile(profile)
+                            }}>
                         Save
                     </button>
                 )}
