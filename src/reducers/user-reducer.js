@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {loginThunk, registerThunk} from "../services/user-thunks";
+import {loginThunk, registerThunk, updateUserThunk} from "../services/user-thunks";
 
 const initialState = {
     email: "",
@@ -59,11 +59,22 @@ const userSlice = createSlice({
             // update the whole state
             return initialState;
         },
+        updateProfile(state, action) {
+            const profile = state
+            profile.email = action.payload.email
+            profile.password = action.payload.password
+            profile.firstName = action.payload.firstName
+            profile.lastName = action.payload.lastName
+            profile.username = action.payload.username
+            profile.phone = action.payload.phone
+            profile.address.street = action.payload.address.street
+            profile.address.city = action.payload.address.city
+            profile.address.state = action.payload.address.state
+            profile.address.zip = action.payload.address.zip
+            profile.bio = action.payload.bio
+        }
     }
 });
 
-export const {login} = userSlice.actions;
-export const {logout} = userSlice.actions;
-export const {statusReset} = userSlice.actions;
-
+export const {login, logout, statusReset, updateProfile} = userSlice.actions;
 export default userSlice.reducer;
