@@ -3,7 +3,7 @@ import React, {useEffect} from "react";
 import UserListItem from "./user-list-item";
 import {Heading, UnorderedList} from "@chakra-ui/react";
 import {useDispatch, useSelector} from "react-redux";
-import {findAllUsersThunk} from "../../services/all-user-thunks";
+import {findAllUsersThunk} from "../../services/user-thunks";
 
 
 const UserList = () => {

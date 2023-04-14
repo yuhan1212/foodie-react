@@ -2,7 +2,7 @@ import { ListItem, Flex, Box, Text, IconButton } from "@chakra-ui/react";
 import { BsPersonBadge } from "react-icons/bs";
 import { FaTrash, FaUserCog } from "react-icons/fa";
 import {useDispatch} from "react-redux";
-import {removeUserThunk} from "../../services/all-user-thunks";
+import {removeUserThunk} from "../../services/user-thunks";
 
 const UserListItem = ({ user }) => {
     const dispatch = useDispatch();
