@@ -29,3 +29,7 @@
 .contact_link_box a:hover {
     color: goldenrod;
 }
+
+.body {
+    height: 100vh;
+}

@@ -25,14 +25,57 @@ const HomeScreen = () => {
                         </div>
                     </div>
                 </div>
+
+                <br/>
                 <div className="row">
-                    <div className="col-2 col-xs-2"></div>
-                    <div className="col-5 col-xs-10" style={{padding: 0}}>
-                        <div style={{backgroundColor: "#fff"}}>
-                            <img src="../../../images/lamb.jpg" className="second-img img-fluid" alt=""/>
+                    <div className="col-12">
+                        <h2 className="text-center featured-title">Our Featured Recipes</h2>
+                        <hr/>
+                    </div>
+                    <div className="col-6 col-lg-3">
+                        <div className="card">
+                            <img src="../../../images/recipe1.jpg" className="card-img-top" alt="Recipe 1"/>
+                            <div className="card-body">
+                                <h5 className="card-title">Recipe 1</h5>
+                                <p className="card-text">This is a sample recipe description. You can add more text here to describe the recipe.</p>
+                                <a href="#" className="btn btn-primary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-6 col-lg-3">
+                        <div className="card">
+                            <img src="../../../images/recipe2.jpg" className="card-img-top" alt="Recipe 2"/>
+                            <div className="card-body">
+                                <h5 className="card-title">Recipe 2</h5>
+                                <p className="card-text">This is a sample recipe description. You can add more text here to describe the recipe.</p>
+                                <a href="#" className="btn btn-primary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-6 col-lg-3">
+                        <div className="card">
+                            <img src="../../../images/recipe3.jpg" className="card-img-top" alt="Recipe 3"/>
+                            <div className="card-body">
+                                <h5 className="card-title">Recipe 3</h5>
+                                <p className="card-text">This is a sample recipe description. You can add more text here to describe the recipe.</p>
+                                <a href="#" className="btn btn-primary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-6 col-lg-3">
+                        <div className="card">
+                            <img src="../../../images/recipe3.jpg" className="card-img-top" alt="Recipe 3"/>
+                            <div className="card-body">
+                                <h5 className="card-title">Recipe 3</h5>
+                                <p className="card-text">This is a sample recipe description. You can add more text here to describe the recipe.</p>
+                                <a href="#" className="btn btn-primary">Learn More</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <br/>
+                <br/>
                 <br/>
                 <footer className="footer_section">
                     <div className="container">

@@ -1,0 +1,7 @@
+.home-text-1 {
+    color: #fff; /* Set the text color */
+    text-shadow: 2px 2px 0 #000, 3px 3px 0 #000, 4px 4px 0 green; /* Create multiple shadows to achieve the 3D effect */
+    font-size: 48px; /* Set the font size */
+    font-weight: bold; /* Set the font weight */
+    font-family: 'Roboto', sans-serif; /* Set the font family */
+}
