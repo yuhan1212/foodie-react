@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import { useParams} from 'react-router-dom'
 import mealService from "../../services/search-service";
+import ReviewList from "./detail-reviews"
 
 
-const DetailsScreen = () => {
+const DetailsScreen = ({user, setUser}) => {
     const {mealId} = useParams()
     const [meal, setMeal] = useState ([])
 
@@ -67,6 +68,10 @@ const DetailsScreen = () => {
                     <p>
                         {mealInstruction}
                     </p>
+
+                    <div className="container p-0">
+                        <ReviewList mealId={mealId} user={user} setUser={setUser} mealName={mealName} mealImg={mealImg}/>
+                    </div>
                 </div>
                 <div className="col-sm-2"/>
             </div>
