@@ -13,8 +13,16 @@ const Profile = () => {
         "role": "ADMIN", "bio": "This is where users put their self-introduction."
     };
 
+    // const user = {
+    //     "_id": "643214d9310aaac5adc27d78", "email": "foodieadmin@gmail.com", "password": "foodieadminpassword",
+    //     "firstName": "John", "lastName": "Bright", "username": "Foodie Admin",
+    //     "phone": "123456789", "address": {"street": "602 White Street", "city": "Sunnyvale", "state": "CA", "zip": "95051"},
+    //     "role": "USER", "bio": "This is where users put their self-introduction."
+    // };
+
     const {uid} = useParams();
     const isAdmin = user && user.role === "ADMIN";
+    const isUser = user && user.role === "USER";
 
     // show all elements in the profile page just for debug purpose
     return (
@@ -31,13 +39,13 @@ const Profile = () => {
                         style={{marginTop: "-60px", marginLeft: "480px"}}>
                             {user.username}
                     </h1>
-                    <div class="row">
+                    <div className="row">
                         <div className="col-3" style={{width: "500px", marginTop: "-15%"}}>
                             <UserCard user={user} />
                         </div>
                         <div className="col m-3">
-                            <UserList />
-                            <SavedRecipe user={{'_id': '643214d9310aaac5adc27d78'}}/>
+                            {isAdmin && <UserList />}
+                            {isUser && <SavedRecipe user={user}/>}
                         </div>
                     </div>
                 </div>
