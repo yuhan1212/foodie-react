@@ -3,9 +3,10 @@ import UserList from "./user-list";
 import SavedRecipe from "./saved-recipe";
 import {useParams, Navigate} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {useSelector} from "react-redux";
 
 const Profile = () => {
-
+    const currentUser = useSelector(state => state.user);
     // const user = {
     //     "_id": "643741149b0ce4bf19681e8b", "email": "foodieadmin@gmail.com", "password": "foodieadminpassword",
     //     "firstName": "John", "lastName": "Bright", "username": "Foodie Admin",
@@ -24,9 +25,25 @@ const Profile = () => {
     const isAdmin = user && user.role === "ADMIN";
     const isUser = user && user.role === "USER";
 
+    const isAdminForCurrentUser = currentUser && currentUser.roles?.includes("ADMIN");
+    const isUserForCurrentUser = currentUser && currentUser.roles?.includes("USER");
+
     // show all elements in the profile page just for debug purpose
     return (
         <>
+            <div>
+                <h1>Current user info:</h1>
+                <p>User id: {currentUser._id}</p>
+                <p>User email: {currentUser.email}</p>
+                <p>User username: {currentUser.username}</p>
+                <p>User roles: {currentUser.roles?.join(', ')}</p>
+                <p>User firstName: {currentUser.firstName}</p>
+                <p>User lastName: {currentUser.lastName}</p>
+                <p>User phone: {currentUser.phone}</p>
+<p>User address: {currentUser.address?.street}, {currentUser.address?.city}, {currentUser.address?.state}, {currentUser.address?.zip}</p>
+                <p>Is ADMIN: {isAdminForCurrentUser ? 'Yes' : 'No'}</p>
+                <p>Is USER: {isUserForCurrentUser ? 'Yes' : 'No'}</p>
+            </div>
             {!user && !uid &&
                 // Current user is a guest, direct to login page
                 <Navigate to="/login" replace={true} />

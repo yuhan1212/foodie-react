@@ -8,6 +8,14 @@ export const userLogin = async ({email, password}) => {
     return response.data;
 }
 
+export const autoLogin = async () => {
+    const userId = localStorage.getItem("userId");
+    if (userId) {
+        const response = await axios.get(`${API_BASE}/users/find-by-id/${userId}`);
+        return response.data;
+    }
+}
+
 export const userRegister = async (user) => {
     const response = await axios.post(`${API_BASE}/register`, user);
     return response.data;

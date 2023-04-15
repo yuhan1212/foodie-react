@@ -1,7 +1,7 @@
 export const userRoles = [
-    {
-        name: 'ADMIN',
-    },
+    // {
+    //     name: 'ADMIN',
+    // },
     {
         name: 'USER',
     }

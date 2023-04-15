@@ -41,3 +41,8 @@ export const removeUserThunk = createAsyncThunk(
         return user;
     }
 )
+
+export const autoLoginThunk = createAsyncThunk(
+    'autoLogin', async () =>
+        await service.autoLogin()
+);

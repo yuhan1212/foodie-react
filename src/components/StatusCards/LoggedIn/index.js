@@ -1,9 +1,11 @@
 import {Button, Heading, HStack, Text} from "@chakra-ui/react";
 import {Link} from "react-router-dom";
 import {logout} from "../../../reducers/user-reducer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import s from './LoggedIn.module.css';
 
 const LoggedIn = () => {
+    const user = useSelector(state => state.user);
     const dispatch = useDispatch();
     const handleLogout = () => {
         dispatch(logout());
@@ -11,7 +13,7 @@ const LoggedIn = () => {
 
     return (
         <>
-            <Heading>Hi,</Heading>
+            <Heading>Hi <span className={s.username}>{user?.username}</span>,</Heading>
             <Text>You have logged in!</Text>
             <HStack>
                 <Link to={'/'} >
