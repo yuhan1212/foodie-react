@@ -36,14 +36,14 @@
     justify-content: center;
 }
 
-.card {
+.card-container {
     padding: 1rem;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
 }
 
-.card:hover {
+.card-container:hover {
     box-shadow: 0 8px 16px goldenrod;
 }
 
@@ -57,12 +57,12 @@
     font-size: 1rem;
 }
 
-.btn {
+.button-featured {
     margin-top: 1rem;
 }
 
 @media screen and (min-width: 768px) {
-    .card {
+    .card-container {
         width: 100%;
         max-width: 500px;
     }

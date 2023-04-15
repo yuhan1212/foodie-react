@@ -56,13 +56,13 @@ const HomeScreen = () => {
                     <div className="row feature-card">
                         {meals.map((meal) => (
                             <div className="col-6 col-lg-3" key={meal.idMeal}>
-                                <div className="card">
-                                    <img src={meal.strMealThumb} className="card-img-top" alt={meal.strMeal} />
+                                <div className="card-container">
+                                    <img src={meal.strMealThumb} className="card-img-top" alt={meal.strMeal} /><br/>
                                     <div className="card-body">
                                         <h5 className="card-title">{meal.strMeal}</h5>
                                         <p className="card-text">{meal.strInstructions.substring(0, 100)}</p>
                                         <Link to={`/details/${meal.idMeal}`}>
-                                            <button type="button" className="rounded-pill btn btn-warning btn-lg">
+                                            <button type="button-featured" className="rounded-pill btn btn-warning btn-lg">
                                                 <i className="bi bi-search"></i> Learn More
                                             </button>
                                         </Link>
