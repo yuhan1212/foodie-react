@@ -32,7 +32,7 @@ const SearchScreen = () => {
                 <div style={{ position: "relative", maxWidth: "600px", width: "100%" }}>
                     <h1 className="home-text-1" style={{ margin: 0 }}>Find Your Meal!</h1><br/>
                     <div style={{ display: "flex", justifyContent: "center" }}>
-                        <input type="text" placeholder="Search for a recipy..." style={{ width: "100%",
+                        <input type="text" placeholder="Search for a recipe..." style={{ width: "100%",
                             padding: "10px",
                             borderRadius: "5px 0 0 5px",
                             border: "none",
