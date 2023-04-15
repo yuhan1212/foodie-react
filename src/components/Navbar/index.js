@@ -6,7 +6,7 @@ const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
-                <NavLink to="/home" className="nav-link" activeClassName="active" style={{ fontSize: '24px', padding: '10px' }}>
+                <NavLink to="/home" className="nav-link" activeclassname="active" style={{ fontSize: '24px', padding: '10px' }}>
                     <span className="navbar-brand" href="#"><i className="bi bi-egg-fried"></i> Foodie</span>
                 </NavLink>
 

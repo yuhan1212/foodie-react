@@ -27,7 +27,7 @@ const HomeScreen = () => {
         <div className="body" style={{backgroundColor: "#f2f2f2"}}>
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-5 d-none d-md-block">
+                    <div className="col-5 ">
                         <h1 className="home-text-1 homeScreen-title text-center">WANT TO EAT HEALTHY?</h1>
                         <h3 className="home-text-2 homeScreen-subTitle text-center">Join Foodie community to cook fresh meal at home!</h3>
                         <br/>
@@ -39,7 +39,7 @@ const HomeScreen = () => {
                             </Link>
                         </div>
                     </div>
-                    <div className="col-7 col-xs-10" style={{padding: 0}}>
+                    <div className="col-7 d-none d-md-block  col-xs-10" style={{padding: 0}}>
                         <div style={{backgroundColor: "#fff"}}>
                             <img src="../../../images/egg.jpg" className="img-fluid rounded-2" alt="My Image"/>
                         </div>
