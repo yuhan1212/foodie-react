@@ -137,18 +137,18 @@ const RegisterForm = ({
                         </HStack>
                     </VStack>
                 </FormControl>
-                <FormControl isRequired={true}>
-                    <CUIAutoComplete
-                        items={roleOptions}
-                        selectedItems={selectedRoles}
-                        onSelectedItemsChange={(changes) => {
-                            const {selectedItems} = changes;
-                            setSelectedRoles(selectedItems);
-                        }}
-                        disableCreateItem={true}
-                        placeholder={'Select your roles'}
-                        label={'Roles'} />
-                </FormControl>
+                {/*<FormControl isRequired={true}>*/}
+                {/*    <CUIAutoComplete*/}
+                {/*        items={roleOptions}*/}
+                {/*        selectedItems={selectedRoles}*/}
+                {/*        onSelectedItemsChange={(changes) => {*/}
+                {/*            const {selectedItems} = changes;*/}
+                {/*            setSelectedRoles(selectedItems);*/}
+                {/*        }}*/}
+                {/*        disableCreateItem={true}*/}
+                {/*        placeholder={'Select your roles'}*/}
+                {/*        label={'Roles'} />*/}
+                {/*</FormControl>*/}
                 <Button
                     type='submit'
                     isLoading={submitting}
