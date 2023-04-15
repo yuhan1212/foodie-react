@@ -1,8 +1,28 @@
-import React from 'react';
-import "./index.css";
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
+import "./index.css";
+import mealService from "../../services/search-service";
+
+
 
 const HomeScreen = () => {
+    const [meals, setMeals] = useState([]);
+
+    useEffect(() => {
+        const mealIds = [52854, 52772, 52928, 53065]; // array of meal IDs to fetch
+        const promises = mealIds.map((id) => mealService.findMealById(id));
+        Promise.all(promises)
+            .then((data) => {
+                const mealsData = data.map((d) => d.meals[0]);
+                setMeals(mealsData);
+            })
+            .catch((error) => console.error(error));
+    }, []);
+
+    if (meals.length === 0) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div className="body" style={{backgroundColor: "#f2f2f2"}}>
             <div className="container-fluid">
@@ -26,57 +46,35 @@ const HomeScreen = () => {
                     </div>
                 </div>
 
-                <br/>
+                <br/><br/><br/>
                 <div className="row">
                     <div className="col-12">
-                        <h2 className="text-center featured-title">Our Featured Recipes</h2>
+                        <h2 className="text-center home-text-1">Our Featured Recipes</h2>
                         <hr/>
                     </div>
-                    <div className="col-6 col-lg-3">
-                        <div className="card">
-                            <img src="../../../images/recipe1.jpg" className="card-img-top" alt="Recipe 1"/>
-                            <div className="card-body">
-                                <h5 className="card-title">Recipe 1</h5>
-                                <p className="card-text">This is a sample recipe description. You can add more text here to describe the recipe.</p>
-                                <a href="#" className="btn btn-primary">Learn More</a>
+
+                    <div className="row feature-card">
+                        {meals.map((meal) => (
+                            <div className="col-6 col-lg-3" key={meal.idMeal}>
+                                <div className="card">
+                                    <img src={meal.strMealThumb} className="card-img-top" alt={meal.strMeal} />
+                                    <div className="card-body">
+                                        <h5 className="card-title">{meal.strMeal}</h5>
+                                        <p className="card-text">{meal.strInstructions.substring(0, 100)}</p>
+                                        <Link to={`/details/${meal.idMeal}`}>
+                                            <button type="button" className="rounded-pill btn btn-warning btn-lg">
+                                                <i className="bi bi-search"></i> Learn More
+                                            </button>
+                                        </Link>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        ))}
                     </div>
-                    <div className="col-6 col-lg-3">
-                        <div className="card">
-                            <img src="../../../images/recipe2.jpg" className="card-img-top" alt="Recipe 2"/>
-                            <div className="card-body">
-                                <h5 className="card-title">Recipe 2</h5>
-                                <p className="card-text">This is a sample recipe description. You can add more text here to describe the recipe.</p>
-                                <a href="#" className="btn btn-primary">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-6 col-lg-3">
-                        <div className="card">
-                            <img src="../../../images/recipe3.jpg" className="card-img-top" alt="Recipe 3"/>
-                            <div className="card-body">
-                                <h5 className="card-title">Recipe 3</h5>
-                                <p className="card-text">This is a sample recipe description. You can add more text here to describe the recipe.</p>
-                                <a href="#" className="btn btn-primary">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-6 col-lg-3">
-                        <div className="card">
-                            <img src="../../../images/recipe3.jpg" className="card-img-top" alt="Recipe 3"/>
-                            <div className="card-body">
-                                <h5 className="card-title">Recipe 3</h5>
-                                <p className="card-text">This is a sample recipe description. You can add more text here to describe the recipe.</p>
-                                <a href="#" className="btn btn-primary">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
 
-                <br/>
-                <br/>
-                <br/>
+                <br/><br/><br/><br/><br/>
                 <footer className="footer_section">
                     <div className="container">
                         <div className="row">
