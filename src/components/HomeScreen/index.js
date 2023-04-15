@@ -39,7 +39,7 @@ const HomeScreen = () => {
                             </Link>
                         </div>
                     </div>
-                    <div className="col-7 d-none d-md-block  col-xs-10" style={{padding: 0}}>
+                    <div className="col-7 d-none d-md-block" style={{padding: 0}}>
                         <div style={{backgroundColor: "#fff"}}>
                             <img src="../../../images/egg.jpg" className="img-fluid rounded-2" alt="My Image"/>
                         </div>
