@@ -57,7 +57,7 @@ const RegisterForm = ({
                         type='email'
                         name={'email'}
                     />
-                    <FormHelperText>We'll never share your email.</FormHelperText>
+                    <FormHelperText>E-mail used for logging into our website.</FormHelperText>
                 </FormControl>
                 <FormControl isRequired={true}>
                     <FormLabel>Username</FormLabel>
@@ -65,6 +65,7 @@ const RegisterForm = ({
                         type='text'
                         name={'username'}
                     />
+                    <FormHelperText>Your name displayed to other users.</FormHelperText>
                 </FormControl>
                 <FormControl isRequired={true}>
                     <FormLabel>Password</FormLabel>

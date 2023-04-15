@@ -16,6 +16,7 @@ import {configureStore} from "@reduxjs/toolkit";
 import userReducer from "./reducers/user-reducer";
 import favoriteReducer from "./reducers/favorite-reducer";
 import usersReducer from "./reducers/all-user-reducer";
+import BaseFrame from "./components/BaseFrame";
 
 const store = configureStore({
     reducer: {
@@ -30,7 +31,7 @@ const App = () => {
       <ChakraProvider>
         <Provider store={store}>
             <BrowserRouter>
-                <div className="container-fluid">
+                <BaseFrame>
                     <Navbar/>
                     <Routes>
                         <Route path="/*" element={<HomeScreen/>}/>
@@ -42,7 +43,7 @@ const App = () => {
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
                     </Routes>
-                </div>
+                </BaseFrame>
             </BrowserRouter>
         </Provider>
       </ChakraProvider>

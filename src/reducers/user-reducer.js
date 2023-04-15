@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {loginThunk, registerThunk} from "../services/user-thunks";
+import {autoLoginThunk, loginThunk, registerThunk} from "../services/user-thunks";
 
 const initialState = {
     email: "",
@@ -37,6 +37,7 @@ const userSlice = createSlice({
             state.status = "login loading";
         },
         [loginThunk.fulfilled]: (state, action) => {
+            localStorage.setItem("userId", action.payload._id);
             // update the whole state
             return {
                 ...action.payload,
@@ -48,7 +49,24 @@ const userSlice = createSlice({
             state.loading = false;
             state.error = action.error;
             state.status = "login rejected";
-        }
+        },
+        [autoLoginThunk.pending]: (state) => {
+            state.loading = true;
+            state.status = "auto login loading";
+        },
+        [autoLoginThunk.fulfilled]: (state, action) => {
+            // update the whole state
+            return {
+                ...action.payload,
+                loading: false,
+                status: "auto login fulfilled",
+            };
+        },
+        [autoLoginThunk.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.error;
+            state.status = "auto login rejected";
+        },
     },
     reducers: {
         statusReset: (state) => {
@@ -57,6 +75,7 @@ const userSlice = createSlice({
         },
         logout: (state) => {
             // update the whole state
+            localStorage.removeItem("userId");
             return initialState;
         },
         updateProfile(state, action) {
