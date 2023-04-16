@@ -46,6 +46,7 @@ const userSlice = createSlice({
             };
         },
         [loginThunk.rejected]: (state, action) => {
+            localStorage.removeItem("userId");
             state.loading = false;
             state.error = action.error;
             state.status = "login rejected";
@@ -55,14 +56,21 @@ const userSlice = createSlice({
             state.status = "auto login loading";
         },
         [autoLoginThunk.fulfilled]: (state, action) => {
-            // update the whole state
-            return {
-                ...action.payload,
-                loading: false,
-                status: "auto login fulfilled",
-            };
+            if (action.payload) {
+                // update the whole state
+                return {
+                    ...action.payload,
+                    loading: false,
+                    status: "auto login fulfilled",
+                };
+            } else {
+                localStorage.removeItem("userId");
+                state.loading = false;
+                state.status = "no stored user";
+            }
         },
         [autoLoginThunk.rejected]: (state, action) => {
+            localStorage.removeItem("userId");
             state.loading = false;
             state.error = action.error;
             state.status = "auto login rejected";

@@ -13,6 +13,10 @@ export const autoLogin = async () => {
     if (userId) {
         const response = await axios.get(`${API_BASE}/users/find-by-id/${userId}`);
         return response.data;
+    } else {
+        // no stored user id, so no auto login
+        console.log("no stored user id, so no auto login");
+        return null;
     }
 }
 
