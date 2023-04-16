@@ -1,29 +1,31 @@
 import React from 'react';
 import {useEffect, useState} from "react";
-import {Link, useParams} from "react-router-dom";
+import {Link, useParams, useNavigate} from "react-router-dom";
 import searchService from "../../services/search-service";
 import "./index.css";
 
 const SearchScreen = () => {
-    const {mealNames} = useParams();
-    const [search, setSearch] = useState('');
+    const {searchTerm} = useParams();
+    const navigate = useNavigate();
+    const [search, setSearch] = useState(searchTerm);
     const [resultMeal, setResultMeal] = useState({meals: []});
     const [noResults, setNoResults] = useState(false);
 
     useEffect(() => {
-        if(mealNames !== "undefined" && typeof mealNames !== "undefined") {
-            searchService.findMealByName(mealNames)
-                .then((resultMeal) => {
-                    setResultMeal(resultMeal)
+        if(searchTerm !== "undefined" && typeof searchTerm !== "undefined") {
+            searchService.findMealByName(searchTerm)
+                .then((searchTerm) => {
+                    setResultMeal(searchTerm)
                 })
         }
-    },[])
+    },[searchTerm])
 
-    const searchMealName = (mealName) => {
-        searchService.findMealByName(mealName)
-            .then((resultMeal) => {
-                if(resultMeal.meals){
-                    setResultMeal(resultMeal)
+    const searchMealName = (searchTerm) => {
+        searchService.findMealByName(searchTerm)
+            .then((searchTerm) => {
+                if(searchTerm.meals){
+                    setResultMeal(searchTerm)
+                    navigate(`/search/${search}`)
                     setNoResults(false);
                 } else {
                     setNoResults(true);
