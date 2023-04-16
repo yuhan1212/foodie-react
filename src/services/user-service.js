@@ -11,7 +11,7 @@ export const userLogin = async ({email, password}) => {
 export const autoLogin = async () => {
     const userId = localStorage.getItem("userId");
     if (userId) {
-        const response = await axios.get(`${API_BASE}/users/find-by-id/${userId}`);
+        const response = await axios.get(`${API_BASE}/users/${userId}`);
         return response.data;
     } else {
         // no stored user id, so no auto login
