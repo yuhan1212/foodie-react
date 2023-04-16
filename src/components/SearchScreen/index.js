@@ -7,7 +7,7 @@ import "./index.css";
 const SearchScreen = () => {
     const {searchTerm} = useParams();
     const navigate = useNavigate();
-    const [search, setSearch] = useState(searchTerm);
+    const [search, setSearch] = useState(searchTerm || "");
     const [resultMeal, setResultMeal] = useState({meals: []});
     const [noResults, setNoResults] = useState(false);
 
@@ -84,7 +84,7 @@ const SearchScreen = () => {
                         resultMeal && resultMeal.meals && resultMeal.meals.map((meal) => {
                             console.log(resultMeal)
                             return(
-                                <li className="list-group-item">
+                                <li key={meal.idMeal} className="list-group-item">
                                     <Link to={`/details/${meal.idMeal}`}>
                                         <div>
                                             {meal.strMeal}
