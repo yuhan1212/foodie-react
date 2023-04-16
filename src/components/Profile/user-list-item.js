@@ -14,7 +14,7 @@ const UserListItem = ({ user }) => {
             <Flex alignItems="center">
                 <Box as="span" textAlign="center" mr={3} width={70} display="flex"
                      flexDirection="column" mr={3} alignItems="center">
-                    {user.role === "MEMBER" && (
+                    {user.role === "USER" && (
                         <>
                             <BsPersonBadge/>
                             <Text fontSize="xs" mt={1}>
@@ -31,7 +31,7 @@ const UserListItem = ({ user }) => {
                         </>
                     )}
                 </Box>
-                <Box flex={1}>
+                <Box flex={1} ml={3}>
                     <Text fontWeight="bold">{user.username}</Text>
                     <Text fontSize="sm" color="gray.600">
                         {user.email}

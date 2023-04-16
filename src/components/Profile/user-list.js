@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {findAllUsersThunk} from "../../services/user-thunks";
 
 
-const UserList = () => {
+const UserList = ({targetRole}) => {
     let {users, loading} = useSelector(
         state => state.usersData)
 
@@ -14,6 +14,9 @@ const UserList = () => {
     useEffect(() => {
         dispatch(findAllUsersThunk())
     }, [])
+
+    const filteredUsers = users.filter((user) => user.role === targetRole);
+
     return (
         <>
             <Heading as="h1" size="xl">Foodie Users</Heading>
@@ -26,7 +29,7 @@ const UserList = () => {
                     </li>
                 }
 
-                {users && users.map(user => <UserListItem
+                {filteredUsers && filteredUsers.map(user => <UserListItem
                     key={user._id}
                     user={user}/>)}
             </UnorderedList>
