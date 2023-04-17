@@ -2,11 +2,17 @@ import React, {useEffect, useState} from 'react'
 import { useParams} from 'react-router-dom'
 import mealService from "../../services/search-service";
 import ReviewList from "./detail-reviews"
+//import {useSelector} from "react-redux";
 
 
 const DetailsScreen = ({user, setUser}) => {
     const {mealId} = useParams()
     const [meal, setMeal] = useState ([])
+    //const currentUser = useSelector(state => state.user);
+    // console.log("currentUser is")
+    // console.log(currentUser)
+    // console.log("currentUser._id is ")
+    // console.log(currentUser._id)
 
     const findMealByMealId = () => {
         mealService.findMealById(mealId)
