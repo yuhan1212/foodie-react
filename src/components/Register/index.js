@@ -56,18 +56,18 @@ const Register = () => {
         const password2 = form.password2.value;
         const firstName = form.firstName.value;
         const lastName = form.lastName.value;
-        const roles = selectedRoles.map(role => role.value);
+        // const roles = selectedRoles.map(role => role.value);
 
-        if (roles.length === 0) {
-            toast({
-                title: 'Oops!',
-                description: "Please select at least one role",
-                status: 'error',
-                duration: 5000,
-                isClosable: true,
-            });
-            return;
-        }
+        // if (roles.length === 0) {
+        //     toast({
+        //         title: 'Oops!',
+        //         description: "Please select at least one role",
+        //         status: 'error',
+        //         duration: 5000,
+        //         isClosable: true,
+        //     });
+        //     return;
+        // }
 
         if (password !== password2) {
             toast({
@@ -86,7 +86,7 @@ const Register = () => {
                 username,
                 phone,
                 address,
-                roles}));
+                }));
         }
     }
 
