@@ -48,3 +48,8 @@ export const removeUser = async (user) => {
     await axios.delete(USERS_API, { data: user});
     return user;
 }
+
+export const logout = async () => {
+    const response = await axios.post(`${USERS_API}/logout`);
+    return response.data;
+};

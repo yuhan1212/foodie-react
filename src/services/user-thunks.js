@@ -48,3 +48,8 @@ export const autoLoginThunk = createAsyncThunk(
     'autoLogin', async () =>
         await service.autoLogin()
 );
+
+export const logoutThunk = createAsyncThunk(
+    "auth/logout", async () => {
+        return await service.logout();
+    });

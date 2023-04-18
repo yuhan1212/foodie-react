@@ -27,7 +27,7 @@ const Profile = () => {
     const isAdmin = currentUser.role === "ADMIN";
     const isUser = currentUser.role === "USER";
     const isManager = currentUser.role === "MANAGER";
-
+    console.log('currentUser.email', currentUser.email)
     return (
         <>
             {currentUser.email === '' && !uid &&
@@ -40,7 +40,8 @@ const Profile = () => {
                     <img src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200__340.jpg" alt="Banner" style={{width: "100%"}}/>
                     <h1 className="d-none d-sm-none d-md-block"
                         style={{marginTop: "-60px", marginLeft: "520px"}}>
-                            {profile.username}
+                            {uid && profile && profile.username}
+                            {!uid && currentUser && currentUser.username}
                     </h1>
                     <div className="row">
                         <div className="col-3" style={{width: "500px", marginTop: "-15%"}}>

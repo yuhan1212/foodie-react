@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {autoLoginThunk, loginThunk, registerThunk, updateUserThunk} from "../services/user-thunks";
+import {autoLoginThunk, loginThunk, registerThunk, updateUserThunk, logoutThunk} from "../services/user-thunks";
 
 const initialState = {
     email: "",
@@ -78,6 +78,10 @@ const userSlice = createSlice({
         [updateUserThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload;
         },
+        [logoutThunk.fulfilled]: (state) => {
+            state.currentUser = null;
+        },
+
     },
     reducers: {
         statusReset: (state) => {

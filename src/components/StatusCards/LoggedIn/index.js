@@ -3,11 +3,13 @@ import {Link} from "react-router-dom";
 import {logout} from "../../../reducers/user-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import s from './LoggedIn.module.css';
+import {logoutThunk} from "../../../services/user-thunks";
 
 const LoggedIn = () => {
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
     const handleLogout = () => {
+        dispatch(logoutThunk());
         dispatch(logout());
     }
 
