@@ -33,6 +33,7 @@ const SearchScreen = () => {
             })
     }
 
+
     return (
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", position: "relative" }}>
             <img src="../../../images/recipe.jpg" alt="background"
@@ -47,6 +48,7 @@ const SearchScreen = () => {
                         border: "none",
                         outline: "none" }}
                            value={search}
+
                            onChange={(e) => {
                                setSearch(e.target.value)
                                if (e.target.value === '') {
@@ -88,7 +90,7 @@ const SearchScreen = () => {
                                     <Link to={`/details/${meal.idMeal}`}>
                                         <div>
                                             {meal.strMeal}
-                                            <img className="float-right" src={meal.strMealThumb} width={50}/>
+                                            <img className="float-right" src={meal.strMealThumb} width={50} alt=""/>
                                         </div>
                                     </Link>
                                 </li>
