@@ -34,27 +34,27 @@ const ReviewList = ({mealId, user, mealName, mealImg}) => {
         }));
         setReview(review => [...review, myReview])
     }
+
     return (
         <div>
             <h2>
                 Reviews
             </h2>
 
-            <ul>
+            <ul className="p-0">
                 {
                     review && review[0] && review.map((item, i) => {
                         return(
-                            <li className="list-spacing"
+                            <div className="border-1 pb-2"
                                 key={i}>
-                                <Link className="reviews-title" to={(mealId && item.mealId && mealId === item.mealId) ?
-                                    "/profile" : `/profile`}>
-                                    {item.username}
+                                <Link className="fw-bold fs-5 mb-2" to={`/profile/${item.userId}`}>
+                                    {item.username}:
                                 </Link>
-                                <div className="reviews-text">
+                                <div className="fs-6 ms-3">
                                     {item.textArea}
                                 </div>
 
-                            </li>
+                            </div>
                         )
                     })
                 }
