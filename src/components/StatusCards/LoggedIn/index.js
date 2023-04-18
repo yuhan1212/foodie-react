@@ -8,6 +8,7 @@ import {logoutThunk} from "../../../services/user-thunks";
 const LoggedIn = () => {
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
+
     const handleLogout = () => {
         dispatch(logoutThunk());
         dispatch(logout());
