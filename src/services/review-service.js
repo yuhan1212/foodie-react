@@ -1,54 +1,36 @@
-const REVIEW_URL = "http://localhost:3001/api/reviews";
+import axios from 'axios';
+
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:4000/api";
+const REVIEW_API = `${API_BASE}/reviews`;
 
 export const findReviewsForMeal = (mealId) =>
-    fetch(`${REVIEW_URL}/${mealId}`, {
-        credentials: 'include'
-    })
-        .then(response => response.json())
+    axios.get(`${REVIEW_API}/${mealId}`, { withCredentials: true })
+        .then(response => response.data)
 
 export const createReviewForMeal = (mealId, textArea, username, mealName, mealImg, userId) => {
-    return fetch(`${REVIEW_URL}/${mealId}`, {
-        method: "POST",
-        credentials: 'include',
-        body: JSON.stringify({mealId, textArea, username, mealName, mealImg, userId}),
-        headers: {
-            'content-type': 'application/json'
-        }
-    })
-        .then(response => response.json())
+    const body = { mealId, textArea, username, mealName, mealImg, userId };
+    return axios.post(`${REVIEW_API}/${mealId}`, body, { withCredentials: true })
+        .then(response => response.data);
 }
 
 export const deleteReview = (mealId, reviewId) =>
-    fetch(`${REVIEW_URL}/${mealId}/${reviewId}`, {
-        method: "DELETE",
-        credentials: 'include',
-        body: JSON.stringify({mealId, reviewId}),
-        headers: {
-            'content-type': 'application/json'
-        }
-    })
-        .then(response => response.json())
+    axios.delete(`${REVIEW_API}/${mealId}/${reviewId}`, { withCredentials: true })
+        .then(response => response.data);
 
 export const updateReview = (mealId, review) =>
-    fetch(`${REVIEW_URL}/${mealId}`, {
-        method: "PUT",
-        credentials: 'include',
-        body: JSON.stringify(review),
-        headers: {
-            'content-type': 'application/json'
-        }
-    })
-        .then(response => response.json())
+    axios.put(`${REVIEW_API}/${mealId}`, review, { withCredentials: true })
+        .then(response => response.data);
 
 export const findReviewsByUsername = (username) =>
-    fetch(`${REVIEW_URL}/username/${username}`, {
-        credentials: 'include'
-    })
-        .then(response => response.json())
-
+    axios.get(`${REVIEW_API}/username/${username}`, { withCredentials: true })
+        .then(response => response.data);
 
 const api = {
-    findReviewsForMeal, createReviewForMeal, deleteReview, updateReview, findReviewsByUsername
+    findReviewsForMeal,
+    createReviewForMeal,
+    deleteReview,
+    updateReview,
+    findReviewsByUsername
 }
 
 export default api;

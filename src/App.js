@@ -17,12 +17,14 @@ import userReducer from "./reducers/user-reducer";
 import favoriteReducer from "./reducers/favorite-reducer";
 import usersReducer from "./reducers/all-user-reducer";
 import BaseFrame from "./components/BaseFrame";
+import reviewReducer from "./reducers/review-reducer";
 
 const store = configureStore({
     reducer: {
         user: userReducer,
         favoritesData: favoriteReducer,
         usersData: usersReducer,
+        reviewData: reviewReducer,
     }
 });
 
