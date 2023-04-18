@@ -6,7 +6,7 @@ import UserBio from "./user-bio";
 import UserInfo from "./user-info";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const UserCard = ({user}) => {
+const UserCard = ({user, isSelf}) => {
     const dispatch = useDispatch();
     const [isEditing, setIsEditing] = useState(false);
     const [profile, setProfile] = useState({
@@ -19,6 +19,7 @@ const UserCard = ({user}) => {
         address: {street: user.address.street, city: user.address.city, state: user.address.state, zip: user.address.zip}, 
         bio: user.bio}
     );
+    console.log("profile in userCard", profile);
     const saveProfile = () => {
         dispatch(updateProfile(profile));
         setIsEditing(false);
@@ -46,7 +47,9 @@ const UserCard = ({user}) => {
                 <br/>
                 <UserBio isEditing={isEditing} profile={profile} setProfile={setProfile} />
             </div>
-            <UserInfo isEditing={isEditing} profile={profile} setProfile={setProfile} />
+            {isSelf &&
+                <UserInfo isEditing={isEditing} profile={profile} setProfile={setProfile} />
+            }
         </div>
     );
 };
