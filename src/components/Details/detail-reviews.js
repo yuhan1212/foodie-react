@@ -1,11 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import reviewService from "../../services/review-service";
+import {useSelector} from "react-redux";
 
 
 const ReviewList = ({mealId, user, mealName, mealImg}) => {
     const [review, setReview] = useState([])
     const [myReview, setMyReview] = useState({})
+    const currentUser = useSelector(state => state.user);
+    console.log(currentUser)
+
     useEffect(() => {
         findReviewsForMeal()
     }, [mealId])
@@ -18,7 +22,7 @@ const ReviewList = ({mealId, user, mealName, mealImg}) => {
     }
 
     const submitHandler = () => {
-        reviewService.createReviewForMeal(mealId, myReview.textArea, user.username, mealName, mealImg, user._id)
+        reviewService.createReviewForMeal(mealId, myReview.textArea, currentUser.username, mealName, mealImg, currentUser._id)
             .then(res => console.log(res))
         setReview(review => [...review, myReview])
     }
@@ -34,7 +38,7 @@ const ReviewList = ({mealId, user, mealName, mealImg}) => {
                         return(
                             <li className="list-spacing"
                                 key={i}>
-                                <Link className="reviews-title" to={(user && user._id && item.userId && user._id === item.userId) ?
+                                <Link className="reviews-title" to={(currentUser && currentUser._id && item.userId && user._id === item.userId) ?
                                     "/profile" : `/profiles/${item.userId}`}>
                                     {item.username}
                                 </Link>
@@ -48,7 +52,7 @@ const ReviewList = ({mealId, user, mealName, mealImg}) => {
                 }
             </ul>
             {
-                !user &&
+                !currentUser &&
                 <>
                     <div className='alert alert-warning'>
                         Please login to submit your review.
@@ -56,7 +60,7 @@ const ReviewList = ({mealId, user, mealName, mealImg}) => {
                 </>
             }
             {
-                user &&
+                currentUser &&
                 <>
                     <h5 className="separation-padding">
                         Submit Your Review
@@ -65,7 +69,7 @@ const ReviewList = ({mealId, user, mealName, mealImg}) => {
                         <textarea id="reviewText" placeholder="Please enter here."
                                   value={myReview.textArea}
                                   onChange={(e) => {
-                                      setMyReview({...myReview, textArea: e.target.value, username: user.username});
+                                      setMyReview({...myReview, textArea: e.target.value, username: currentUser.username});
                                   }}
                                   className="form-control"/>
                     </div>
