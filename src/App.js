@@ -14,6 +14,7 @@ import {ChakraProvider} from "@chakra-ui/react";
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
 import userReducer from "./reducers/user-reducer";
+import dislikeReducer from "./reducers/dislike-reducer";
 import favoriteReducer from "./reducers/favorite-reducer";
 import usersReducer from "./reducers/all-user-reducer";
 import BaseFrame from "./components/BaseFrame";
@@ -23,6 +24,7 @@ const store = configureStore({
     reducer: {
         user: userReducer,
         favoritesData: favoriteReducer,
+        dislikeData: dislikeReducer,
         usersData: usersReducer,
         reviewData: reviewReducer,
     }

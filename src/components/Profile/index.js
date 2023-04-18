@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {useSelector} from "react-redux";
 import * as service from "../../services/user-service";
 import React, {useEffect, useState} from 'react';
+import DislikedRecipe from "./disliked-recipe";
 
 
 const Profile = () => {
@@ -25,9 +26,6 @@ const Profile = () => {
     const isAdmin = currentUser && currentUser.role === "ADMIN";
     const isUser = currentUser && currentUser.role === "USER";
     const isManager = currentUser && currentUser.role === "MANAGER";
-
-    const isAdminForCurrentUser = currentUser && currentUser.roles?.includes("ADMIN");
-    const isUserForCurrentUser = currentUser && currentUser.roles?.includes("USER");
 
     // show all elements in the profile page just for debug purpose
     return (
@@ -57,7 +55,9 @@ const Profile = () => {
                             {isManager && !uid && <UserList targetRole="ADMIN"/>}
                             {isAdmin && !uid && <UserList targetRole="USER"/>}
                             {isUser && !uid && <SavedRecipe user={currentUser}/>}
+                            {isUser && !uid && <DislikedRecipe user={currentUser}/>}
                             {uid && <SavedRecipe user={{_id: uid}}/>}
+                            {uid && <DislikedRecipe user={{_id: uid}}/>}
                         </div>
                     </div>
                 </div>
