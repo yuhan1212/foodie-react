@@ -41,8 +41,7 @@ export const findUserById = async (userId) => {
 }
 
 export const updateUser = async (user) => {
-    await axios.put(`${USERS_API}/${user._id}`, user);
-    return user;
+    return axios.put(`${USERS_API}/${user._id}`, user);
 }
 
 export const removeUser = async (user) => {

@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {autoLoginThunk, loginThunk, registerThunk} from "../services/user-thunks";
+import {autoLoginThunk, loginThunk, registerThunk, updateUserThunk} from "../services/user-thunks";
 
 const initialState = {
     email: "",
@@ -9,7 +9,7 @@ const initialState = {
     phone: "",
     address: {},
     avatar: "",
-    about: "",
+    bio: "",
     role: "",
     loading: false,
 };
@@ -74,6 +74,9 @@ const userSlice = createSlice({
             state.loading = false;
             state.error = action.error;
             state.status = "auto login rejected";
+        },
+        [updateUserThunk.fulfilled]: (state, action) => {
+            state.currentUser = action.payload;
         },
     },
     reducers: {

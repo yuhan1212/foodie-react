@@ -1,29 +1,20 @@
 import React, { useState } from 'react';
-import { useDispatch } from "react-redux";
-import { updateProfile } from '../../reducers/user-reducer';
+import { useDispatch, useSelector } from "react-redux";
+import { updateUserThunk } from '../../services/user-thunks';
 import profilePic from './profile-image.jpeg';
 import UserBio from "./user-bio";
 import UserInfo from "./user-info";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const UserCard = ({user, isSelf}) => {
+const UserCard = () => {
+    const currentUser = useSelector(state => state.user);
     const dispatch = useDispatch();
-    const [isEditing, setIsEditing] = useState(false);
-    const [profile, setProfile] = useState({
-        email: user.email,
-        password: user.password,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        username: user.username,
-        phone: user.phone,
-        address: {street: user.address.street, city: user.address.city, state: user.address.state, zip: user.address.zip}, 
-        bio: user.bio}
-    );
-    console.log("profile in userCard", profile);
-    const saveProfile = () => {
-        dispatch(updateProfile(profile));
+    const [profile, setProfile] = useState(currentUser);
+    const saveProfile = async () => {
+        await dispatch(updateUserThunk(profile));
         setIsEditing(false);
     };
+    const [isEditing, setIsEditing] = useState(false);
 
     return (
         <div className="card mx-5">
@@ -47,9 +38,7 @@ const UserCard = ({user, isSelf}) => {
                 <br/>
                 <UserBio isEditing={isEditing} profile={profile} setProfile={setProfile} />
             </div>
-            {isSelf &&
                 <UserInfo isEditing={isEditing} profile={profile} setProfile={setProfile} />
-            }
         </div>
     );
 };
