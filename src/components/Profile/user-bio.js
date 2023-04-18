@@ -13,7 +13,7 @@ const UserBio = ({isEditing, profile, setProfile}) => {
             {isEditing && (
                 <div>
                     <textarea className="form-control mt-3" id="bio" rows="3" placeholder={profile.bio}
-                                onChange={(e) => {setProfile({ ...profile, firstName: e.target.value })}}>
+                                onChange={(e) => {setProfile({ ...profile, bio: e.target.value })}}>
                     </textarea>
                 </div>
             )}
