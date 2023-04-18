@@ -4,24 +4,24 @@ import SavedRecipe from "./saved-recipe";
 import {useParams, Navigate} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useSelector} from "react-redux";
+import * as service from "../../services/user-service";
+import React, {useEffect, useState} from 'react';
+
 
 const Profile = () => {
     const currentUser = useSelector(state => state.user);
-    // const user = {
-    //     "_id": "643741149b0ce4bf19681e8b", "email": "foodieadmin@gmail.com", "password": "foodieadminpassword",
-    //     "firstName": "John", "lastName": "Bright", "username": "Foodie Admin",
-    //     "phone": "123456789", "address": {"street": "602 White Street", "city": "Sunnyvale", "state": "CA", "zip": "95051"},
-    //     "role": "ADMIN", "bio": "This is where users put their self-introduction."
-    // };
-
-    // const user = {
-    //     "_id": "643214d9310aaac5adc27d78", "email": "foodieadmin@gmail.com", "password": "foodieadminpassword",
-    //     "firstName": "John", "lastName": "Bright", "username": "john_bright",
-    //     "phone": "123456789", "address": {"street": "602 White Street", "city": "Sunnyvale", "state": "CA", "zip": "95051"},
-    //     "role": "USER", "bio": "This is where users put their self-introduction."
-    // };
-
+    const [profile, setProfile] = useState({})
     const {uid} = useParams();
+    useEffect(() => {
+        if(uid) {
+            service.findUserById(uid)
+                .then((profile) => {
+                    setProfile(profile)
+                })
+        }
+    }, [uid])
+    console.log('profile', profile)
+
     const isAdmin = currentUser && currentUser.role === "ADMIN";
     const isUser = currentUser && currentUser.role === "USER";
     const isManager = currentUser && currentUser.role === "MANAGER";
