@@ -10,7 +10,7 @@ const ReviewList = ({mealId, user, mealName, mealImg}) => {
     const [myReview, setMyReview] = useState({})
     const currentUser = useSelector(state => state.user);
     const dispatch = useDispatch();
-    console.log(currentUser)
+    //console.log(currentUser)
 
     useEffect(() => {
         findReviewsForMeal()
@@ -46,7 +46,7 @@ const ReviewList = ({mealId, user, mealName, mealImg}) => {
                         return(
                             <li className="list-spacing"
                                 key={i}>
-                                <Link className="reviews-title" to={(currentUser && currentUser._id && item.userId && currentUser._id === item.userId) ?
+                                <Link className="reviews-title" to={(mealId && item.mealId && mealId === item.mealId) ?
                                     "/profile" : `/profile`}>
                                     {item.username}
                                 </Link>
