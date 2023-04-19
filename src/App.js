@@ -9,7 +9,6 @@ import Register from "./components/Register";
 import Profile from "./components/Profile";
 import DetailsScreen from "./components/Details/detail-screen";
 import AboutUs from "./components/AboutUs";
-import Others from "./components/Others";
 import {ChakraProvider} from "@chakra-ui/react";
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
