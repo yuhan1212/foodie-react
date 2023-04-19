@@ -21,8 +21,8 @@ const DetailsScreen = ({user, setUser}) => {
                 })
         }
         if (currentUser._id) {
-            likeService.isFavorite(mealId, currentUser._id).then((res) => setLiked(true));
-            dislikeService.isDislike(mealId, currentUser._id).then((res) => setDisliked(true));
+            likeService.isFavorite(mealId, currentUser._id).then((res) => setLiked(res));
+            dislikeService.isDislike(mealId, currentUser._id).then((res) => setDisliked(res));
         }
     }, [mealId, currentUser]);
 
@@ -51,19 +51,18 @@ const DetailsScreen = ({user, setUser}) => {
 
 
     const onClickLike = async () => {
-        if (currentUser._id){
-            await likeService.addFavorite(mealId, currentUser._id, currentUser.username, mealName, mealImg);
-            setLiked(true);
-        }
+        await likeService.addFavorite(mealId, currentUser._id, currentUser.username, mealName, mealImg);
+        setLiked(true);
     }
 
     const onClickDislike = async () => {
-        if (currentUser._id){
-            await dislikeService.addDislike(mealId, currentUser._id, currentUser.username, mealName, mealImg);
-            setDisliked(true);
-        }
+        await dislikeService.addDislike(mealId, currentUser._id, currentUser.username, mealName, mealImg);
+        setDisliked(true);
     }
-
+    console.log("liked")
+    console.log(liked)
+    console.log("disliked")
+    console.log(disliked)
     return (
 
         <div className="container-fluid top-margin bottom-margin">
@@ -75,7 +74,7 @@ const DetailsScreen = ({user, setUser}) => {
                         {mealName}
                     </h2>
                     <div className="container p-0">
-                        {(
+                        {currentUser._id && (
                             <div className="col-xs-4">
                                 { (
                                     <button
@@ -84,7 +83,7 @@ const DetailsScreen = ({user, setUser}) => {
                                         disabled={liked}
                                         style={{ marginRight: '25px' }}
                                     >
-                                        Like <span className="fa fa-plus-square" />
+                                        Like
                                     </button>
                                 )}
                                 { (
@@ -93,7 +92,7 @@ const DetailsScreen = ({user, setUser}) => {
                                         onClick={onClickDislike}
                                         disabled={disliked}
                                     >
-                                        Dislike <span className="fa fa-trash" />
+                                        Dislike
                                     </button>
                                 )}
                             </div>
