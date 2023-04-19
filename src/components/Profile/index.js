@@ -7,6 +7,7 @@ import OtherUser from './other-user';
 import UserList from "./user-list";
 import SavedRecipe from "./saved-recipe";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DislikedRecipe from "./disliked-recipe";
 
 const Profile = () => {
     const {uid} = useParams();
@@ -51,7 +52,9 @@ const Profile = () => {
                             {isManager && !uid && <UserList targetRole="ADMIN"/>}
                             {isAdmin && !uid && <UserList targetRole="USER"/>}
                             {isUser && !uid && <SavedRecipe user={currentUser}/>}
+                            {isUser && !uid && <DislikedRecipe user={currentUser}/>}
                             {uid && <SavedRecipe user={{_id: uid}}/>}
+                            {uid && <DislikedRecipe user={{_id: uid}}/>}
                         </div>
                     </div>
                 </div>

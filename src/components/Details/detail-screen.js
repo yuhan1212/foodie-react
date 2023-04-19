@@ -5,6 +5,10 @@ import ReviewList from "./detail-reviews"
 import likeService from "../../services/favorite-service";
 import dislikeService from "../../services/dislike-service"
 import {useSelector} from "react-redux";
+import { IconButton } from "@chakra-ui/react";
+import {FaHeart, FaThumbsDown, FaRegThumbsDown, FaRegHeart} from "react-icons/fa";
+import * as service from "../../services/favorite-service";
+
 
 const DetailsScreen = ({user, setUser}) => {
     const {mealId} = useParams()
@@ -51,13 +55,31 @@ const DetailsScreen = ({user, setUser}) => {
 
 
     const onClickLike = async () => {
-        await likeService.addFavorite(mealId, currentUser._id, currentUser.username, mealName, mealImg);
-        setLiked(true);
+        if (!liked) {
+            await likeService.addFavorite(mealId, currentUser._id, currentUser.username, mealName, mealImg);
+            setLiked(true);
+        } else {
+            const allUserFav = await likeService.findFavoritesByUserId(currentUser._id);
+            const curFav = allUserFav.filter((fav) => fav.recipeId === mealId);
+            console.log('curFav', curFav, curFav[0]._id)
+            await likeService.removeFavorite(curFav[0]);
+            setLiked(false);
+        }
+
     }
 
     const onClickDislike = async () => {
-        await dislikeService.addDislike(mealId, currentUser._id, currentUser.username, mealName, mealImg);
-        setDisliked(true);
+        if (!disliked) {
+            await dislikeService.addDislike(mealId, currentUser._id, currentUser.username, mealName, mealImg);
+            setDisliked(true);
+        } else {
+            const allUserDislike = await dislikeService.findDislikesByUserId(currentUser._id);
+            const curDis = allUserDislike.filter((dis) => dis.recipeId === mealId);
+            console.log('curDis', curDis, curDis[0]._id)
+            await dislikeService.removeDislike(curDis[0]);
+            setDisliked(false);
+        }
+
     }
     console.log("liked")
     console.log(liked)
@@ -77,23 +99,21 @@ const DetailsScreen = ({user, setUser}) => {
                         {currentUser._id && (
                             <div className="col-xs-4">
                                 { (
-                                    <button
-                                        className="btn btn-outline-success"
+                                    <IconButton
+                                        className="btn"
                                         onClick={onClickLike}
                                         disabled={liked}
                                         style={{ marginRight: '25px' }}
-                                    >
-                                        Like
-                                    </button>
+                                        icon={liked? <FaHeart /> : <FaRegHeart/>}
+                                    />
                                 )}
                                 { (
-                                    <button
-                                        className="btn btn-outline-danger"
+                                    <IconButton
+                                        className="btn"
                                         onClick={onClickDislike}
                                         disabled={disliked}
-                                    >
-                                        Dislike
-                                    </button>
+                                        icon={disliked ? <FaThumbsDown /> : <FaRegThumbsDown />}
+                                    />
                                 )}
                             </div>
                         )}
