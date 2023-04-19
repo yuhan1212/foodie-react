@@ -18,7 +18,8 @@ const UserCard = () => {
 
     return (
         <div className="card mx-5">
-            <img className="card-img-top" src={profilePic} alt="Profile"/>
+            <img className="card-img-top" src="../../../images/cake.jpg" alt="Profile"
+                 style={{ width: 400, height: 400 }}/>
             <div className="card-body">
                 {!isEditing && (
                     <button className="float-end rounded-pill btn btn-light"
