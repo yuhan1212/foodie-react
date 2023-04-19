@@ -27,3 +27,13 @@ export const findAllDislikes = async () => {
     const response = await axios.get(DISLIKE_API);
     return response.data;
 }
+
+const dislikeService = {
+    isDislike,
+    findDislikesByUserId,
+    addDislike,
+    removeDislike,
+    findAllDislikes
+}
+
+export default dislikeService

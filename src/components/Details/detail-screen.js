@@ -1,50 +1,68 @@
 import React, {useEffect, useState} from 'react'
-import { useParams} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import mealService from "../../services/search-service";
 import ReviewList from "./detail-reviews"
-//import {useSelector} from "react-redux";
-
+import likeService from "../../services/favorite-service";
+import dislikeService from "../../services/dislike-service"
+import {useSelector} from "react-redux";
 
 const DetailsScreen = ({user, setUser}) => {
     const {mealId} = useParams()
     const [meal, setMeal] = useState ([])
-    //const currentUser = useSelector(state => state.user);
-    // console.log("currentUser is")
-    // console.log(currentUser)
-    // console.log("currentUser._id is ")
-    // console.log(currentUser._id)
+    const [liked, setLiked] = useState(false);
+    const [disliked, setDisliked] = useState(false);
+    const currentUser = useSelector(state => state.user);
 
-    const findMealByMealId = () => {
-        mealService.findMealById(mealId)
-            .then((data) => {
-                setMeal(data)
-            })
-    }
     useEffect(()=> {
-        findMealByMealId();
-    }, [])
+        if (mealId) {
+            mealService.findMealById(mealId)
+                .then((data) => {
+                    setMeal(data)
+                })
+        }
+        if (currentUser._id) {
+            likeService.isFavorite(mealId, currentUser._id).then((res) => setLiked(true));
+            dislikeService.isDislike(mealId, currentUser._id).then((res) => setDisliked(true));
+        }
+    }, [mealId, currentUser]);
 
 
     const mealName = meal.meals && meal.meals[0] && meal.meals[0].strMeal;
     const mealImg = meal.meals && meal.meals[0] && meal.meals[0].strMealThumb;
 
     // Get the 'strIngredients' that are not null or empty for all meals
-    const ingredientsList = meal && meal.meals  && meal.meals
-        .map(meal => {
-            return Object.keys(meal)
-                .filter(key => key.startsWith('strIngredient') && meal[key] !== null && meal[key] !== '')
-                .map(key => meal[key]);
-        })
-        .flat();
-
-    // Populate the list-group with the ingredients
-    const ingredientListElement = document.getElementById('ingredientList');
-    if (ingredientListElement) {
-        ingredientListElement.innerHTML = ingredientsList.map(ingredient => `<li>${ingredient}</li>`).join('');
-    }
+    const ingredientsList =
+        meal && meal.meals && Array.isArray(meal.meals)
+            ? meal.meals
+                .map((meal) => {
+                    return Object.keys(meal)
+                        .filter(
+                            (key) =>
+                                key.startsWith('strIngredient') &&
+                                meal[key] !== null &&
+                                meal[key] !== ''
+                        )
+                        .map((key) => meal[key]);
+                })
+                .flat()
+            : [];
 
     const mealInstruction = meal.meals && meal.meals[0] && meal.meals[0].strInstructions;
-    // console.log(mealName)
+
+
+    const onClickLike = async () => {
+        if (currentUser._id){
+            await likeService.addFavorite(mealId, currentUser._id, currentUser.username, mealName, mealImg);
+            setLiked(true);
+        }
+    }
+
+    const onClickDislike = async () => {
+        if (currentUser._id){
+            await dislikeService.addDislike(mealId, currentUser._id, currentUser.username, mealName, mealImg);
+            setDisliked(true);
+        }
+    }
 
     return (
 
@@ -54,21 +72,49 @@ const DetailsScreen = ({user, setUser}) => {
                 <div className="col-sm-8">
                     <br/>
                     <h2 className="">
-
                         {mealName}
-
                     </h2>
                     <div className="container p-0">
+                        {(
+                            <div className="col-xs-4">
+                                { (
+                                    <button
+                                        className="btn btn-outline-success"
+                                        onClick={onClickLike}
+                                        disabled={liked}
+                                        style={{ marginRight: '25px' }}
+                                    >
+                                        Like <span className="fa fa-plus-square" />
+                                    </button>
+                                )}
+                                { (
+                                    <button
+                                        className="btn btn-outline-danger"
+                                        onClick={onClickDislike}
+                                        disabled={disliked}
+                                    >
+                                        Dislike <span className="fa fa-trash" />
+                                    </button>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                    <div className="container ps-0 pt-2">
                         <img src={mealImg}
                              width={600}/>
                     </div>
                     <br/>
-                    <h2 className="list-group-item">Ingredients </h2>
-                    <div className="container" style={{paddingLeft: '20px'}}>
-                        <ul className="list-group-item">
-                            <li className="list-group-item" id="ingredientList"></li>
+
+                    <div className="container ps-0">
+                        <h2 className="list-group-item">Ingredients </h2>
+                        <ul className="list-group">
+                            {ingredientsList.map((ingredient, index) => (
+                                <li className="list-group-item" key={index}>{ingredient}</li>
+                            ))}
                         </ul>
                     </div>
+                    <br/>
+
 
                     <h2> Instruction </h2>
                     <p>
@@ -85,7 +131,6 @@ const DetailsScreen = ({user, setUser}) => {
             {/*{JSON.stringify(meal, null, 2)}*/}
         </pre>
         </div>
-
     )
 }
 export default DetailsScreen

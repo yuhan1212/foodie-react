@@ -27,3 +27,13 @@ export const findAllFavorites = async () => {
     const response = await axios.get(FAVORITE_API);
     return response.data;
 }
+
+const likeService = {
+    isFavorite,
+    findFavoritesByUserId,
+    addFavorite,
+    removeFavorite,
+    findAllFavorites
+}
+
+export default likeService;
