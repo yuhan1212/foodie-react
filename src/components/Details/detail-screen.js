@@ -7,7 +7,6 @@ import dislikeService from "../../services/dislike-service"
 import {useSelector} from "react-redux";
 import { IconButton } from "@chakra-ui/react";
 import {FaHeart, FaThumbsDown, FaRegThumbsDown, FaRegHeart} from "react-icons/fa";
-import * as service from "../../services/favorite-service";
 
 
 const DetailsScreen = ({user, setUser}) => {
@@ -120,7 +119,8 @@ const DetailsScreen = ({user, setUser}) => {
                     </div>
                     <div className="container ps-0 pt-2">
                         <img src={mealImg}
-                             width={600}/>
+                             width={600}
+                             alt="No picture loaded"/>
                     </div>
                     <br/>
 

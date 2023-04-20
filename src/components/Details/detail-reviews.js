@@ -33,6 +33,7 @@ const ReviewList = ({mealId, user, mealName, mealImg}) => {
             userId: currentUser._id
         }));
         setReview(review => [...review, myReview])
+        setMyReview({...myReview, textArea: ''}); // reset the text area
     }
 
     return (
