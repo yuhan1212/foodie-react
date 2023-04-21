@@ -80,10 +80,9 @@ const DetailsScreen = ({user, setUser}) => {
         }
 
     }
-    console.log("liked")
-    console.log(liked)
-    console.log("disliked")
-    console.log(disliked)
+    console.log("liked:", liked)
+    console.log("disliked:", disliked)
+    
     return (
 
         <div className="container-fluid top-margin bottom-margin">
@@ -120,7 +119,7 @@ const DetailsScreen = ({user, setUser}) => {
                     <div className="container ps-0 pt-2">
                         <img src={mealImg}
                              width={600}
-                             alt="No picture loaded"/>
+                             alt="meal pic"/>
                     </div>
                     <br/>
 

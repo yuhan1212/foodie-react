@@ -6,7 +6,6 @@ import { logoutThunk } from '../../services/user-thunks';
 
 const Navbar = () => {
     const currentUser = useSelector((state) => state.user);
-    console.log(currentUser);
     const dispatch = useDispatch();
 
     const handleLogout = () => {

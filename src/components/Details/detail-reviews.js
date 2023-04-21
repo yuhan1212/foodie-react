@@ -10,7 +10,6 @@ const ReviewList = ({mealId, user, mealName, mealImg}) => {
     const [myReview, setMyReview] = useState({})
     const currentUser = useSelector(state => state.user);
     const dispatch = useDispatch();
-    //console.log(currentUser)
 
     useEffect(() => {
         findReviewsForMeal()

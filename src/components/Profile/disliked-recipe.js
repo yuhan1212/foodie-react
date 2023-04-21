@@ -14,7 +14,7 @@ const DislikedRecipe = ({user}) => {
     useEffect(() => {
         dispatch(findDislikesByUserIdThunk(user._id))
     }, [])
-    console.log('dislikes', dislikes)
+
     return (
         <>
             <Heading as="h1" size="xl">

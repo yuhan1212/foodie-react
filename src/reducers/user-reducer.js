@@ -92,20 +92,6 @@ const userSlice = createSlice({
             // update the whole state
             localStorage.removeItem("userId");
             return initialState;
-        },
-        updateProfile(state, action) {
-            const profile = state
-            profile.email = action.payload.email
-            profile.password = action.payload.password
-            profile.firstName = action.payload.firstName
-            profile.lastName = action.payload.lastName
-            profile.username = action.payload.username
-            profile.phone = action.payload.phone
-            profile.address.street = action.payload.address.street
-            profile.address.city = action.payload.address.city
-            profile.address.state = action.payload.address.state
-            profile.address.zip = action.payload.address.zip
-            profile.bio = action.payload.bio
         }
     }
 });

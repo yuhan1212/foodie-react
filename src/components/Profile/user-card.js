@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import * as service from "../../services/user-service";
 import { updateUserThunk } from '../../services/user-thunks';
-import profilePic from './profile-image.jpeg';
 import UserBio from "./user-bio";
 import UserInfo from "./user-info";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,6 +15,14 @@ const UserCard = () => {
         setIsEditing(false);
     };
     const [isEditing, setIsEditing] = useState(false);
+    useEffect(() => {
+        if (currentUser._id) {
+            service.findUserById(currentUser._id)
+                .then((profile) => {
+                    setProfile(profile)
+                })
+        }
+    }, [currentUser._id]);
 
     return (
         <div className="card mx-5">
