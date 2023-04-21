@@ -28,9 +28,6 @@ const Profile = () => {
     const isUser = currentUser.role === "USER";
     const isManager = currentUser.role === "MANAGER";
 
-    console.log("currentUser", currentUser);
-    console.log("uid", uid);
-
     return (
         <>
             {currentUser.email === '' && !uid &&
