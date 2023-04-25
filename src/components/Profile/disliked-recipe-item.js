@@ -2,14 +2,17 @@ import { ListItem, Flex, Image, Text, IconButton } from "@chakra-ui/react";
 import { FaThumbsDown } from "react-icons/fa";
 import {useDispatch} from "react-redux";
 import {removeDislikeThunk} from "../../services/dislike-thunks";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import React from "react";
 
 const DislikedRecipeItem = ({dislike}) => {
+    const {uid} = useParams();
     const dispatch = useDispatch();
     const removeDislikeHandler = (dislike) => {
-        console.log('removeDislikeHandler', dislike)
-        dispatch(removeDislikeThunk(dislike))
+        if (!uid) {
+            console.log('removeDislikeHandler', dislike)
+            dispatch(removeDislikeThunk(dislike))
+        }
     }
     return (
         <ListItem mt={3}>

@@ -94,7 +94,7 @@ const DetailsScreen = ({user, setUser}) => {
                         {mealName}
                     </h2>
                     <div className="container p-0">
-                        {currentUser._id && (
+                        {currentUser._id && currentUser.role === "USER" && (
                             <div className="col-xs-4">
                                 { (
                                     <IconButton
